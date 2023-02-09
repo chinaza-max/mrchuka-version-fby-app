@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FBY security app</title>
+  <meta name="keywords" content="FBY app">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/icofont.min.css">
+  <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+  <link rel="stylesheet" href="assets/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="assets/css/datatables.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="assets/css/Chart.min.css">
+  <link rel="stylesheet" href="assets/css/morris.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  <link rel="stylesheet" href="assets/css/chatUI.css">
+
+
+  
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body class="vertical-layout boxed">
+<div class="app-loader main-loader">
+  <div class="loader-box">
+    <div class="bounceball"></div>
+    <div class="text">FBY<span>app</span></div>
+  </div>
+</div>
+<!-- .main-loader -->
+
+<div class="page-box">
+  <div class="app-container">
+    <!-- Horizontal navbar -->
+    <div id="navbar1" class="app-navbar horizontal">
+      <div class="navbar-wrap">
+
+        <button class="no-style navbar-toggle navbar-open d-lg-none">
+          <span></span><span></span><span></span>
+        </button>
+        
+          <div class="app-actions">
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 12"
+              >
+                <span class="icon icofont-notification"></span>
+                <span class="badge badge-danger badge-sm">5</span>
+              </button>
+              
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-280">
+                <div class="menu-header">
+                  <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
+
+                  <a href="#" class="text-danger">Clear All</a>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#">
+                      <div class="icon  icofont-hour-glass"></div> 
+
+                      <div class="content">
+                        <span class="desc">new Pending project requires action</span>
+                        <span class="date">17 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="icon sli-target"></div>
+                      <div class="content  p-2">
+                        <span class="desc">you tried to clocking-in on the wrong location</span>
+                        <span class="date">17 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="icon icofont-letter"></div>
+
+                      <div class="content">
+                        <span class="desc">FBY Important message</span>
+                        <span class="date">25 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+                
+                </ul>
+
+                <div class="menu-footer">
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#notification">
+                    View all notifications
+                    <span class="btn-icon ms-2 icofont-tasks-alt"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 10"
+              >
+                <span class="d-flex align-items-center">
+                  <img src="../assets/content/user-400-1.jpg" alt="" width="40" height="40" class="rounded-500 me-1">
+                  <i class="icofont-simple-down"></i>
+                </span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-180">
+                <ul class="list">
+                  <li>
+                    <a href="./edit-account.html" class="align-items-center">
+                      <span class="icon icofont-ui-home"></span>
+                      Edit account
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="#" class="align-items-center"  data-bs-toggle="modal" data-bs-target="#settings">
+                      <span class="icon icofont-ui-settings"></span>
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick="clearUserData()" href="./sign-in.html" class="align-items-center">
+                      <span class="icon icofont-logout"></span>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- end Horizontal navbar -->
+
+    <!-- Vertical navbar -->
+    <div id="navbar2" class="app-navbar vertical">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-close icofont-close-line d-lg-none"></button>
+
+        
+          <div class="app-logo">
+            <div class="logo-wrap">
+            
+              <img src="assets/img/logo.png" alt="" width="147" height="33" class="logo-img">
+               FBY
+            
+            </div>
+          </div>
+
+        <!-- start menu --> 
+          <div class="main-menu">
+            <nav class="main-menu-wrap">
+              <ul class="menu-ul">
+                <li class="menu-item">
+                  <span class="group-title">MENU</span>
+                </li>
+                <li class="menu-item active">
+                  <a class="item-link" href="#">
+                    <div class="link-icon icon sli-grid"></div>
+                    <span class="link-text">Dashboard</span>
+                  </a>
+                </li>
+                
+                <li class="menu-item">
+                  <a class="item-link" href="Jobs.html">
+                    <div class="link-icon icofont-tasks-alt"></div>
+                    <span class="link-text">Jobs</span>
+                  </a>
+                </li>
+               
+                <li class="menu-item">
+                  <a class="item-link" href="FBYmemo.html">
+                    <div class="link-icon icofont-letter"></div>
+                    <span class="link-text">FBY memo</span>
+                  </a>
+                </li>
+                
+                <li class="menu-item">
+                  <a class="item-link" href="shift.html">
+                    <div class="link-icon sli-speedometer"></div>
+                    <span class="link-text">Shift</span>
+                  </a>
+                </li>
+               
+              </ul>
+            </nav>
+          </div>
+        <!-- end menu --> 
+        
+      </div>
+    </div>
+
+    <!-- end Vertical navbar -->
+
+    <main class="main-content">
+      <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+
+      <div class="main-content-wrap">
+        <div class="page-content">
+            <h3 class="Center">
+                OOPS!
+            </h3>
+            <div class="alert alert-warning outline" role="alert">
+                you cant view this page offline
+            </div>
+        </div>
+      </div>
+    </main>
+
+     <!-- Modals -->
+
+       <!--start Footer  -->
+        <div class="app-footer">
+          <div class="footer-wrap">
+            <div class="row h-100 align-items-center">
+             
+              <div class="col-12 col-md-6 text-end">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+                  <span>Settings</span>
+                  <button class="no-style ms-2 settings-btn" data-bs-toggle="modal" data-bs-target="#settings">
+                    <span class="icon icofont-ui-settings text-primary"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-skeleton">
+              <div class="row align-items-center">
+                <div class="col-12 col-md-6 d-none d-md-block">
+                  <ul class="page-breadcrumbs">
+                    <li class="item bg-1 animated-bg"></li>
+                    <li class="item bg animated-bg"></li>
+                  </ul>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="info justify-content-center justify-content-md-end">
+                    <div class="version bg animated-bg"></div>
+                    <div class="settings animated-bg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--End Footer  -->
+
+    <div class="content-overlay"></div>
+
+  </div>
+</div>
+
+
+<!-- start setting overlay -->
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Application's settings</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+        
+          <div class="form-group">
+            <label>Light/dark topbar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="topbar">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Light/dark sidebar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="sidebar">
+            </div>
+          </div>
+
+          <div class="form-group mb-0">
+            <label>Boxed/fullwidth mode</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="boxed" checked>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-block">
+        <div class="actions justify-content-between">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="reset-to-default" type="button" class="btn btn-error">Reset to default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--start setting overlay -->
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.4.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.typeahead.min.js"></script>
+<script src="assets/js/datatables.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/jquery.barrating.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/raphael-min.js"></script>
+<script src="assets/js/morris.min.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<script src="assets/js/echarts-gl.min.js"></script>
+<script src="assets/js/globalVar.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

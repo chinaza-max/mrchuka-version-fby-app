@@ -1,0 +1,28 @@
+{
+    "data": [
+      {
+        "Title": "ILIS Building",
+        "Type": "Instant",
+        "Date": "2/22/2018",
+        "Payout": "NGN 200"
+      },
+      {
+        "Title": "aloson Building",
+        "Type": "Subscribtion",
+        "Date": "2/22/2018",
+        "Payout": "NGN 33"
+      },
+      {
+        "Title": "MANSON Building",
+        "Type": "Subscribtion",
+        "Date": "2/22/2018",
+        "Payout": "NGN 303"
+      },
+      {
+        "Title": "aloson Building",
+        "Type": "Subscribtion",
+        "Date": "2/22/2018",
+        "Payout": "NGN 200"
+      }
+    ]
+}

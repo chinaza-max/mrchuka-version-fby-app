@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FBY security app</title>
+  <meta name="keywords" content="FBY app">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/icofont.min.css">
+  <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+  <link rel="stylesheet" href="assets/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="assets/css/datatables.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="assets/css/Chart.min.css">
+  <link rel="stylesheet" href="assets/css/morris.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  <link rel="stylesheet" href="assets/css/chatUI.css">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body class="vertical-layout boxed">
+<div class="app-loader main-loader">
+  <div class="loader-box">
+    <div class="bounceball"></div>
+    <div class="text">FBY<span>TEAM</span></div>
+  </div>
+</div>
+<!-- .main-loader -->
+
+<div class="page-box">
+  <div class="app-container">
+    <!-- Horizontal navbar -->
+    <div id="navbar1" class="app-navbar horizontal">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-open d-lg-none">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="app-actions">
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 12"
+              >
+                <span class="icon icofont-notification"></span>
+                <span class="badge badge-danger badge-sm"></span>
+              </button>
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-280">
+                <div class="menu-header">
+                  <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
+
+                  <a href="#" class="text-danger">Clear All</a>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#">
+                      <div class="alert alert-primary outline w-100" role="alert">
+                        No notification
+                      </div>
+                    </a>
+                  </li>
+               
+                </ul>
+
+               
+              </div>
+            </div>
+
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 10"
+              >
+                <span class="d-flex align-items-center">
+                  <img id="profile" src="/assets/content/user-400-1.jpg" alt="" width="40" height="40" class="rounded-500 me-1">
+                  <i class="icofont-simple-down"></i>
+                </span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-180">
+                <ul class="list">
+                  <li>
+                    <a href="edit-account.html" class="align-items-center">
+                      <span class="icon icofont-ui-home"></span>
+                      Edit account
+                    </a>
+                  </li>
+                  
+                 
+                  <li>
+                    <a href="#" class="align-items-center" data-bs-toggle="modal" data-bs-target="#settings">
+                      <span class="icon icofont-ui-settings"></span>
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="sign-in.html" class="align-items-center" >
+                      <span class="icon icofont-logout"></span>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        
+        
+      </div>
+    </div>
+
+    <!-- end Horizontal navbar -->
+
+    <!-- Vertical navbar -->
+    <div id="navbar2" class="app-navbar vertical">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-close icofont-close-line d-lg-none"></button>
+
+        
+          <div class="app-logo">
+            <div class="logo-wrap">
+              <!-- Image logo -->
+              <img src="assets/img/logo.png" alt="" width="147" height="33" class="logo-img">
+              <!-- end Image logo --> FBY
+            
+            </div>
+          </div>
+
+            <!-- start menu --> 
+              <div class="main-menu">
+                <nav class="main-menu-wrap">
+                  <ul class="menu-ul">
+                    <li class="menu-item">
+                      <span class="group-title">MENU</span>
+                    </li>
+                    <li class="menu-item">
+                      <a class="item-link" href="index.html">
+                        <div class="link-icon icon sli-grid"></div>
+                        <span class="link-text">Dashboard</span>
+                      </a>
+                    </li>
+                    
+                    <li class="menu-item">
+                      <a class="item-link" href="Jobs.html">
+                        <div class="link-icon icofont-tasks-alt"></div>
+                        <span class="link-text">Jobs</span>
+                      </a>
+                    </li>
+                    
+                    <li class="menu-item active">
+                      <a class="item-link" href="#">
+                        <div class="link-icon icofont-letter"></div>
+                        <span class="link-text">FBY memo</span>
+                      </a>
+                    </li>
+
+                   
+                    <li class="menu-item">
+                        <a class="item-link" href="shift.html">
+                          <div class="link-icon sli-speedometer"></div>
+                          <span class="link-text">Shift</span>
+                      </a>
+                    </li>
+                  
+                  </ul>
+                </nav>
+              </div>
+            <!-- end menu --> 
+      
+        
+      </div>
+    </div>
+
+    <!-- end Vertical navbar -->
+
+    <main class="main-content">
+      <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+
+      <div class="main-content-wrap">
+        <header class="page-header">
+          <h1 class="page-title">Security memo</h1>
+        </header>
+
+        <div class="page-content" >
+          <div class="row"  id="memoContainerView">
+
+
+          </div>
+          <div class="text-center" id="loader1">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!--start chat -->
+    <div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content"> 
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="icofont-close-line"></i>
+          </button>
+
+          <div class="modal-header">
+            <h5 class="modal-title">reply memo</h5>
+          </div>
+          <div class="modal-body"  id="modal-bodyID">
+            <div id="chatContainer">
+              <div class="app">
+              
+                <div class="wrapper">
+                  <div class="chat-area" id="chat-areaId">
+                 
+                    <div class="chat-area-main">
+                   
+
+                      <div class="chat-msg">
+                        <div class="chat-msg-profile">
+                          <img class="chat-msg-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%282%29.png" alt="">
+                          <div class="chat-msg-date">Message seen 2.45pm</div>
+                        </div>
+                        <div class="chat-msg-content">
+                          
+                          <div class="chat-msg-text">
+
+                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore enim, nemo 
+                            nihil non omnis temporibus? Blanditiis culpa labore velit.Lorem ipsum dolor sit amet, consectetur
+                             adipisicing elit. Dicta, provident?
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="chat-msg owner">
+                        <div class="chat-msg-profile">
+                          <img class="chat-msg-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%281%29.png" alt="" />
+                          <div class="chat-msg-date">Message seen 2.50pm</div>
+                        </div>
+                        <div class="chat-msg-content">
+                          <div class="chat-msg-text">yes sir i will </div>
+                          <div class="chat-msg-text">i need more equipment</div>
+                        </div>
+                      </div>
+                     
+                    </div>
+                    <div class="chat-area-footer">
+                         
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-paperclip">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
+                      </svg>
+                      <input type="text" placeholder="Type something here..." />
+                     
+                      <div class="icon icofont-hand-drawn-alt-right"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" >
+            <h6 style="margin-right:72%">emergency</h6>
+            <div class="actions">
+              
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!--end chat -->
+
+
+
+    <div class="app-footer">
+      <div class="footer-wrap">
+        <div class="row h-100 align-items-center">
+    
+          <div class="col-12 col-md-6 text-end">
+            <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+              <span>Settings</span>
+              <button class="no-style ms-2 settings-btn" data-bs-toggle="modal" data-bs-target="#settings">
+                <span class="icon icofont-ui-settings text-primary"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-skeleton">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-6 d-none d-md-block">
+              <ul class="page-breadcrumbs">
+                <li class="item bg-1 animated-bg"></li>
+                <li class="item bg animated-bg"></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="info justify-content-center justify-content-md-end">
+                <div class="version bg animated-bg"></div>
+                <div class="settings animated-bg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-overlay"></div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="replyContainer" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+      </div>
+      <div class="modal-body" >
+         
+
+        <div class="card-body"  id="replyContent">
+            
+        </div>
+
+        <div class="text-center" id="loader2">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h5 class="page-title"  style="clear: both;">Notification</h5>
+      </div>
+      <div class="modal-body">
+        <main class="main-content mb-0">
+          <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+    
+          <div class="main-content-wrap">
+            <div class="page-content">
+              <div class="col-12">
+                <div class="card">
+                  
+                  <div class="card-body">
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"> <div class="icon  icofont-hour-glass"></div> </div>
+                      <div class="alert-content">new Pending project requires action</div>
+                      <span class="date">1 minutes ago</span>
+                    </div>
+                    <div class="alert alert-danger with-before-icon" role="alert">
+                      <div class="alert-icon">
+                        <div class="icon sli-target"></div>
+                      </div>
+                      <div class="alert-content">you tried to clocking-in on the wrong location</div>
+                      <span class="date">10 minutes ago</span>
+                    </div>
+                    
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"><div class="icon icofont-letter"></div>
+                    </div>
+                      <div class="alert-content">new memo requires your attention</div>
+                      <span class="date">17 minutes ago</span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+            </div>
+  
+          </div>
+        </main>
+    
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- start setting overlay -->
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Application's settings</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          
+          <div class="form-group">
+            <label>Light/dark topbar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="topbar">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Light/dark sidebar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="sidebar">
+            </div>
+          </div>
+
+          <div class="form-group mb-0">
+            <label>Boxed/fullwidth mode</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="boxed" checked>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-block">
+        <div class="actions justify-content-between">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="reset-to-default" type="button" class="btn btn-error">Reset to default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--start setting overlay -->
+
+
+<div class="modal fade" id="memoContainer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Memo</h5>
+      </div>
+      <div class="modal-body"  id="memoContent">
+        
+      
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMemo" >Reply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="replyMemo"  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h6 class="modal-title">You are required to reply to the memo</h6>
+      </div>
+      <div class="modal-body" >
+         
+
+        <div class="card-body">
+          <form id="submitReply">
+            <div class="form-group mb-0">
+              <textarea class="form-control" placeholder="Enter responses"  id="response" rows="4" required>ok</textarea>
+            </div>
+            <button type="submit" id="submitJob2"  style="display: none;"></button>
+          </form>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" onclick="clickSubmitButton()"  >Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.4.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.typeahead.min.js"></script>
+<script src="assets/js/datatables.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/jquery.barrating.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/raphael-min.js"></script>
+<script src="assets/js/morris.min.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<script src="assets/js/echarts-gl.min.js"></script>
+<script src="assets/js/globalVar.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/FBYmemo.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

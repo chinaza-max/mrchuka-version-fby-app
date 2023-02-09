@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FBY security app</title>
+  <meta name="keywords" content="FBY app">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/icofont.min.css">
+  <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+  <link rel="stylesheet" href="assets/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="assets/css/datatables.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="assets/css/Chart.min.css">
+  <link rel="stylesheet" href="assets/css/morris.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  <link rel="stylesheet" href="assets/css/chatUI.css">
+  <link rel="stylesheet" href="assets/css/mediaAttachment.css">
+  <link rel="stylesheet" href="assets/css/startAudioVisualizer.css">
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/slider.css"> 
+ 
+</head>
+
+
+<body class="vertical-layout boxed">
+<div class="app-loader main-loader">
+  <div class="loader-box">
+    <div class="bounceball"></div>
+    <div class="text">FBY<span>TEAM</span></div>
+  </div>
+</div>
+<!-- .main-loader -->
+
+
+<div class="page-box">
+  <div class="app-container">
+    <!-- Horizontal navbar -->
+    <div id="navbar1" class="app-navbar horizontal">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-open d-lg-none">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="app-actions">
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 12"
+              >
+                <span class="icon icofont-notification"></span>
+                <span class="badge badge-danger badge-sm"></span>
+              </button>
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-280">
+                <div class="menu-header">
+                  <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
+
+                  <a href="#" class="text-danger">Clear All</a>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#">
+                      <div class="alert alert-primary outline w-100" role="alert">
+                        No notification
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 10"
+              >
+                <span class="d-flex align-items-center">
+                  <img  id="profile" src="assets/content/user-400-1.jpg" alt="" width="40" height="40" class="rounded-500 me-1">
+                  <i class="icofont-simple-down"></i>
+                </span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-180">
+                <ul class="list">
+                  <li>
+                    <a href="edit-account.html" class="align-items-center">
+                      <span class="icon icofont-ui-home"></span>
+                      Edit account
+                    </a>
+                  </li>
+                  
+                 
+                  <li>
+                    <a href="#" class="align-items-center" data-bs-toggle="modal" data-bs-target="#settings">
+                      <span class="icon icofont-ui-settings"></span>
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="sign-in.html" class="align-items-center" >
+                      <span class="icon icofont-logout"></span>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+    
+        
+      </div>
+    </div>
+
+    <!-- end Horizontal navbar -->
+
+    <!-- Vertical navbar -->
+    <div id="navbar2" class="app-navbar vertical">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-close icofont-close-line d-lg-none"></button>
+
+        
+          <div class="app-logo">
+            <div class="logo-wrap">
+              <!-- Image logo -->
+              <img src="assets/img/logo.png" alt="" width="147" height="33" class="logo-img">
+              <!-- end Image logo --> FBY
+            
+            </div>
+          </div>
+        
+          <!-- start menu --> 
+            <div class="main-menu">
+              <nav class="main-menu-wrap">
+                <ul class="menu-ul">
+                  <li class="menu-item">
+                    <span class="group-title">MENU</span>
+                  </li>
+                  <li class="menu-item">
+                    <a class="item-link" href="index.html">
+                      <div class="link-icon icon sli-grid"></div>
+                      <span class="link-text">Dashboard</span>
+                    </a>
+                  </li>
+                  
+                  <li class="menu-item">
+                    <a class="item-link" href="Jobs.html">
+                      <div class="link-icon icofont-tasks-alt"></div>
+                      <span class="link-text">Jobs</span>
+                    </a>
+                  </li>
+              
+                  
+                  <li class="menu-item">
+                    <a class="item-link" href="FBYmemo.html">
+                      <div class="link-icon icofont-letter"></div>
+                      <span class="link-text">FBY memo</span>
+                    </a>
+                  </li>
+
+                 
+                  <li class="menu-item">
+                    <a class="item-link" href="shift.html">
+                      <div class="link-icon sli-speedometer"></div>
+                      <span class="link-text">Shift</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </nav>
+            </div>
+          <!-- end menu --> 
+      </div>
+    </div>
+
+    <!-- end Vertical navbar -->
+
+    <main class="main-content mb-0">
+      <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+
+      
+      <div class="main-content-wrap">
+        <div style="float: right">
+          <button class="btn btn-outline-info btn-square rounded-pill px-3 disabled" id="emergencyButton">
+            Emergency
+          </button>
+        </div>
+
+        <header class="page-header" style="clear: right;">
+          <div   class="btn btn-load jobLoader w-95" style="background-color:white; border: none;box-shadow: none;"> 
+            Light
+            <span class="btn-loader icofont-spinner"></span>
+          </div>
+          <h1 class="page-title" id="myPageTitle"  style="clear: both;"></h1>
+        </header>
+        
+        <div class="page-content">
+
+
+          <!-- START JOB LOCATION -->
+          <figure>
+            <figcaption class="blockquote-footer">
+              <div class="card mb-md-0">
+                <div class="card-body">
+              
+                  <div class="row align-items-center">
+                    <div class="col col-auto">
+                      <div class="icon icofont-location-pin fs-30 text-muted"></div>
+                    </div>
+                    <div class="col">
+                      <div>Job Address</div>
+                      <span id="address">
+                       
+                      </span>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <hr>
+
+
+          <!-- END JOB LOCATION -->
+
+
+          <div class="card mb-10">
+           
+            <div class="card-body">
+              <div class="card-header">
+                Job Reward
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th scope="col">Per / hour</th>
+                    <th scope="col">Hours worked </th>
+                    <th scope="col">Earned</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                 
+                  <tr>
+                    <td id="amountPerHour">0</td>
+                    <td id="hoursWorked">0</td>
+                    <td id="earned">0</td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- START JOB SCHEDULE -->
+
+          <div class="card">
+           
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col" class="text-nowrap">Start Date</th>
+                    <th scope="col" class="text-nowrap">Start Time</th>
+                    <th scope="col" class="text-nowrap">End Date</th>
+                    <th scope="col" class="text-nowrap">End Time</th>
+                  </tr>
+                  </thead>
+                  <tbody id="date">
+                   
+                  </tbody>
+                </table>
+                <div   class="btn btn-load jobLoader w-100" style="background-color:white; border: none;"> 
+                  Light
+                  <span class="btn-loader icofont-spinner"></span>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="card-body">
+              <div class="alert alert-light outline text-dark" role="alert">
+                Job type: <strong id="jobType"> Subscription</strong>
+              </div>
+              
+
+              <div class="card-header">
+                Job Schedule
+              </div>
+              <div class="table-responsive">
+                <table class="table table-dark table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Start date</th>
+                    <th scope="col">Start time</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">End time</th>
+                  </tr>
+                  </thead>
+                  <tbody id="scheduleTable">
+                   
+                  </tbody>
+                </table>
+                <div   class="btn btn-load jobLoader w-100" style="background-color:white; border: none;"> 
+                  Light
+                  <span class="btn-loader icofont-spinner"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="card-header">
+              Next Shift Begins in
+              </div>
+              <div class="table-responsive ">
+                <table class="table table-sm ">
+                  <thead>
+                  <tr>
+                    <th scope="col" style="text-align:Center">
+                      <strong id="days">00</strong> 
+                    </th>
+                    <th scope="col" style="text-align:Center">
+                      <strong id="hours">00</strong>
+                    </th>
+                    <th scope="col" style="text-align:Center">
+                      <strong id="minute">00</strong>
+                    </th>
+                    <th scope="col" style="text-align:Center">
+                      <strong id="second">00</strong>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td style="text-align:Center">Days</td>
+                    <td style="text-align:Center">Hours</td>
+                    <td style="text-align:Center">Minutes</td>
+                    <td style="text-align:Center">Seconds</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!--END CURRENT  EVENT AND COUNTDOWN -->
+
+
+            <!--START SECURITY BUTTON-->
+      
+            <div class="elements-list  mt-3">
+
+
+            
+             
+              
+              <a   href="postReport.html" class="btn btn-outline-secondary mt-3" >
+                <div class="icon icofont-clip-board"></div>                
+                 View Report
+              </a>
+              
+              <a  href="logs.html" style="min-width:145px;" class="btn btn-outline-secondary mt-3" >
+                <div class="icon icofont-clip-board"></div>                
+                View Logs
+              </a>
+              <button type="button" class="btn btn-outline-primary mt-3" id="btn-scan-qr" >
+                <div class="icon icofont-qr-code"></div>
+                Scan QR Code
+              </button>
+
+              <button type="button" class="btn btn-outline-danger mt-3" id="stopScan" onclick="stopScan()">
+                <div class="icon icofont-ui-close"></div>
+                Stop Scan
+              </button>
+              
+
+
+
+              
+
+            </div>
+
+
+            <canvas hidden="" id="qr-canvas"></canvas>
+            <div id="qr-result" hidden="">
+                <b></b> <span id="outputData"></span>
+            </div>
+
+            <div class="alert alert-light outline text-dark mt-3" role="alert" id="check_in_and_out">
+
+
+              <div class="thething">
+                <div id="switch3">
+                  <span class="handle">Safety</span>
+                  <div class="icon icofont-double-right"></div>
+                </div>            
+              </div>
+              
+              <div class="thething">
+                <div id="switch">
+                  <span class="handle">Check in</span>
+                  <div class="icon icofont-double-right"></div>
+                </div>            
+              </div>
+
+              <div class="thething">
+                <div id="switch2">
+                  <span class="handle">Check out</span>
+                  <div class="icon icofont-double-right"></div>
+                </div>            
+              </div>
+
+            </div>
+            <!--START SECURITY BUTTON-->
+          </div>
+
+          <!-- END Job SCHEDULE -->
+
+            <div class="add-action-box">
+              <button class="btn btn-primary rounded-0 btn-sm" data-bs-toggle="modal" data-bs-target="#modal-2" >
+                <span style="font-size:15px">Report</span>
+                <span class="badge badge-danger badge-sm"></span>
+              </button>
+            </div>
+          </div>
+
+          <!--START TABS-->
+          
+          <div class="card">
+            <div class="card-body">
+              <ul class="nav nav-tabs mb-3" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab" aria-controls="tab-1" aria-selected="true" onclick="smoothScroll2(document.getElementById('tab-1'))">Job description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2" type="button" role="tab" aria-controls="tab-2" aria-selected="false" onclick="smoothScroll2(document.getElementById('tab-2'))">Job task</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3" type="button" role="tab" aria-controls="tab-3" aria-selected="false" onclick="smoothScroll2(document.getElementById('tab-3'))">Job instruction</button>
+                </li>
+              </ul>
+
+
+              <div class="tab-content">
+
+                <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                  <div class="card">
+                    <div class="card-body" id="description">
+                      
+
+                    </div>
+                  </div>
+        
+                </div>
+
+                <div  class="tab-pane fade" id="tab-2" role="tabpanel">
+                  <div class="card">
+                    <div class="card-body"  id="task">
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                  <div class="card">
+                    <div class="card-body" >
+
+
+                      <div class="v-timeline align-center">
+                        <div class="line"></div>
+        
+                        <div class="timeline-box">
+                          <div class="box-items"  id="instruction" >
+        
+                            <div class="item">
+                              <div class="icon-block">
+                                <div class="item-icon icofont-search-document bg-info"></div>
+                              </div>
+        
+                              <div class="content-block">
+                                <div class="item-header">
+                                  <h3 class="h5 item-title">Appointment</h3>
+        
+                                  <div class="item-date"><span>2m ago</span></div>
+                                </div>
+        
+                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate.</div>
+                              </div>
+                            </div>
+        
+                            <div class="item">
+                              <div class="icon-block">
+                                <div class="item-icon icofont-drug bg-danger"></div>
+                              </div>
+        
+                              <div class="content-block">
+                                <div class="item-header">
+                                  <h3 class="h5 item-title">Medication</h3>
+        
+                                  <div class="item-date"><span>2h ago</span></div>
+                                </div>
+        
+                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.</div>
+                              </div>
+                            </div>
+        
+                            <div class="item">
+                              <div class="icon-block">
+                                <div class="item-icon icofont-paralysis-disability bg-warning"></div>
+                              </div>
+        
+                              <div class="content-block">
+                                <div class="item-header">
+                                  <h3 class="h5 item-title">New patient</h3>
+        
+                                  <div class="item-date"><span>Jul 10</span></div>
+                                </div>
+        
+                                <div class="item-desc">Lorem ipsum dolor sit.</div>
+                              </div>
+                            </div>
+        
+                            <div class="item">
+                              <div class="icon-block">
+                                <div class="item-icon icofont-stethoscope-alt"></div>
+                              </div>
+        
+                              <div class="content-block">
+                                <div class="item-header">
+                                  <h3 class="h5 item-title">Examination</h3>
+        
+                                  <div class="item-date"><span>Jul 10</span></div>
+                                </div>
+        
+                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.</div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!--END TABS-->
+          
+        </div>
+    </main>
+
+      <!-- start map -->
+    <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="icofont-close-line"></i>
+          </button>
+
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+          </div>
+          <div class="modal-body">
+
+
+            <div class="main-content-wrap full-filled">
+              <div class="page-content">
+                <div id="google-map" class="map"></div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <div class="actions">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">refresh </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- end map -->
+
+
+    <!--start chat -->
+    <div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="icofont-close-line"></i>
+          </button>
+
+          <div class="modal-header">
+            <h5 class="modal-title">Report issues</h5>
+          </div>
+          <div class="modal-body" id="modal-bodyID">
+            <div class="card">
+             
+              <div class="card-body">
+                <form id="reportForm">
+                  <div class="form-group">
+                    <label>Optional</label>
+                    <div class="input-group mb-3">
+                      <input type="file" accept=" image/jpeg , image/png , video/mp4" class="form-control" id="inputGroupFile02">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" rows="4" placeholder="Comment" id="message" required></textarea>
+                  </div>
+
+                  <button class="btn btn-primary w-100" type="submit" id="signInButton" >Send form</button>
+
+                  <button type="button" class="btn btn-primary btn-load w-100" id="loadingButton">
+                    Primary
+                    <span class="btn-loader icofont-spinner"></span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" >
+            <div class="actions">
+              
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!--end chat -->
+
+    <div class="app-footer">
+      <div class="footer-wrap">
+        <div class="row h-100 align-items-center">
+         
+          <div class="col-12 col-md-6 text-end">
+            <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+              <span>Settings</span>
+              <button class="no-style ms-2 settings-btn" data-bs-toggle="modal" data-bs-target="#settings">
+                <span class="icon icofont-ui-settings text-primary"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-skeleton">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-6 d-none d-md-block">
+              <ul class="page-breadcrumbs">
+                <li class="item bg-1 animated-bg"></li>
+                <li class="item bg animated-bg"></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="info justify-content-center justify-content-md-end">
+                <div class="version bg animated-bg"></div>
+                <div class="settings animated-bg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-overlay"></div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h5 class="page-title"  style="clear: both;">Notification</h5>
+      </div>
+      <div class="modal-body">
+        <main class="main-content mb-0">
+          <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+    
+          <div class="main-content-wrap">
+            <div class="page-content">
+              <div class="col-12">
+                <div class="card">
+                  
+                  <div class="card-body">
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"> <div class="icon  icofont-hour-glass"></div> </div>
+                      <div class="alert-content">new Pending project requires action</div>
+                      <span class="date">1 minutes ago</span>
+                    </div>
+                    <div class="alert alert-danger with-before-icon" role="alert">
+                      <div class="alert-icon">
+                        <div class="icon sli-target"></div>
+                      </div>
+                      <div class="alert-content">you tried to clocking-in on the wrong location</div>
+                      <span class="date">10 minutes ago</span>
+                    </div>
+                    
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"><div class="icon icofont-letter"></div>
+                    </div>
+                      <div class="alert-content">new memo requires your attention</div>
+                      <span class="date">17 minutes ago</span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+            </div>
+  
+          </div>
+        </main>
+    
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="preUploadImage" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+
+        <canvas hidden  id="canvas" width="320" height="240" ></canvas>
+        <img id="myPreUploadImage2" style="height:320px; width:220px; margin: 0 auto; display: block;"  src="/#" />
+        <img id="myPreUploadImage" style="max-height:300px; width:270px; margin: 0 auto; display: block;"  src="/#"  />
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  onclick="postAttachment()" data-bs-dismiss="modal">post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="viewUploadedImage" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+        <img id="viewUploadedImageTag" style="height:320px; width:220px; margin: 0 auto; display: block;"  src="/#" />
+      </div>
+
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"  style="background-color:rgb(221, 51, 51)" onclick="deleteUploadedImage()" data-bs-dismiss="modal">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="viewUploadedVideo" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+        <video id="viewUploadedVideoTag"  src="/#"  style="height:300px; width: 100%;"  controls></video>
+      </div>
+
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"  style="background-color:rgb(221, 51, 51)" onclick="deleteUploadedVideo()" data-bs-dismiss="modal">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cameraModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+      
+        <video id="video" style="height:300px; width: 100%;" autoplay></video>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopVideo1()">Close</button>
+          <button type="button" class="btn btn-primary"  id="click-photo" data-bs-dismiss="modal">capture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="audioModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+      <div class="modal-body  position-relative">
+        <svg  preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+      
+              <mask id="mask">
+                  <g id="maskGroup">
+                </g>
+              </mask>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
+                  <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
+                  <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
+              </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+      </svg>
+      
+      <h1></h1>
+      <div><span id="audioTimeH">0</span> <span> : </span><span id="audioTimeS">0</span></div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-primary" id="btnStart" >Start</button>
+          <button type="button" class="btn btn-secondary"  style="background-color:rgb(221, 51, 51)"  id="btnStop" data-bs-dismiss="modal">Stop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="preUploadAudio" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+        <audio id="audioPlay" controls></audio>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="postAudio()"  data-bs-dismiss="modal">post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cameraModalRecording" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <video id="video2" style="height:300px; width: 100%;" muted autoplay></video>
+        <div><span id="videoTimeH">0</span> <span> : </span><span id="videoTimeS">0</span></div>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-primary"  id="start-record" >Start</button>
+          <button type="button" class="btn btn-secondary"  style="background-color:rgb(221, 51, 51)" id="stop-record" data-bs-dismiss="modal">Stop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="preUploadVideo"  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+        <video id="preUploadVideoSource"  src="/#"  style="height:300px; width: 100%;"  controls></video>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" onclick="initializeVideoState()" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  onclick="postVideo();initializeVideoState()" data-bs-dismiss="modal">post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="add_note">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <i class="icofont-close-line"></i>
+        </button>
+
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+        </div>
+        <form id="addNoteForm">
+
+            <div class="modal-body">
+              
+                <div class="form-group">
+                    <label for="">
+                       Current situation
+                    </label>
+                    <textarea class="form-control" rows="4" id="myNote" maxlength="70"   placeholder="ok" required></textarea>
+                </div>
+                
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-info" data-dismiss="modal" >Submit</button>
+
+            </div>
+
+        </form>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="userError" style="z-index:10000;" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id="userErrorContent">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="userSuccess" style="z-index:10000;" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div  id="userSuccessContent" class="alert alert-primary outline  text-center" role="alert">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        Not yet time
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="warning2" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <h5 class="modal-title">Permission required
+        </h5>
+      </div>
+      <div class="modal-body">
+        Allow camera access
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="warning3" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <h5 class="modal-title">Video 
+        </h5>
+      </div>
+      <div class="modal-body">
+       Video recording has started or it is on 
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="warning4" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+       
+      <div class="modal-header">
+        <h5 class="modal-title">Video 
+        </h5>
+      </div>
+      <div class="modal-body">
+       Video recording has stoped already or has not started
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Application's settings</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+        
+          <div class="form-group">
+            <label>Light/dark topbar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="topbar">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Light/dark sidebar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="sidebar">
+            </div>
+          </div>
+
+          <div class="form-group mb-0">
+            <label>Boxed/fullwidth mode</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="boxed" checked>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-block">
+        <div class="actions justify-content-between">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="reset-to-default" type="button" class="btn btn-error">Reset to default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="memoContainer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+    
+
+      <div class="modal-header">
+        <h5 class="modal-title">Memo</h5>
+      </div>
+      <div class="modal-body"  id="memoContent">
+        
+      
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMemo" >Reply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="replyMemo" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h6 class="modal-title">You are required to reply to the memo</h6>
+      </div>
+      <div class="modal-body" >
+         
+
+        <div class="card-body">
+          <form id="submitReply">
+            <div class="form-group mb-0">
+              <textarea class="form-control" placeholder="Enter responses"  id="response" rows="4" required>ok</textarea>
+            </div>
+            <button type="submit" id="submitJob"  style="display: none;"></button>
+          </form>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" onclick="clickSubmitButton()"  >Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.4.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.typeahead.min.js"></script>
+<script src="assets/js/datatables.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/jquery.barrating.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/raphael-min.js"></script>
+<script src="assets/js/morris.min.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<script src="assets/js/echarts-gl.min.js"></script>
+<script src="assets/js/globalVar.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/jobDetails.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/qrCodeScanner.js"></script>
+
+
+</body>
+</html>

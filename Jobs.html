@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FBY security app</title>
+  <meta name="keywords" content="FBY app">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/icofont.min.css">
+  <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+  <link rel="stylesheet" href="assets/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="assets/css/datatables.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="assets/css/Chart.min.css">
+  <link rel="stylesheet" href="assets/css/morris.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body class="vertical-layout boxed">
+<div class="app-loader main-loader">
+  <div class="loader-box">
+    <div class="bounceball"></div>
+    <div class="text">FBY<span>TEAM</span></div>
+  </div>
+</div>
+<!-- .main-loader -->
+
+<div class="page-box">
+  <div class="app-container">
+    <!-- Horizontal navbar -->
+    <div id="navbar1" class="app-navbar horizontal">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-open d-lg-none">
+            <span></span><span></span><span></span>
+          </button>
+        
+          <div class="app-actions">
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 12"
+              >
+                <span class="icon icofont-notification"></span>
+                <span class="badge badge-danger badge-sm"></span>
+              </button>
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-280">
+                <div class="menu-header">
+                  <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
+
+                  <a href="#" class="text-danger">Clear All</a>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#">
+                      <div class="alert alert-primary outline w-100" role="alert">
+                        No notification
+                      </div>
+                    </a>
+                  </li>
+               
+                </ul>
+
+               
+              </div>
+            </div>
+
+            <div class="dropdown item">
+              <button
+                class="no-style dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-offset="0, 10"
+              >
+                <span class="d-flex align-items-center">
+                  <img id="profile" src="assets/content/user-400-1.jpg" alt="" width="40" height="40" class="rounded-500 me-1">
+                  <i class="icofont-simple-down"></i>
+                </span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-w-180">
+                <ul class="list">
+                  <li>
+                    <a href="edit-account.html" class="align-items-center">
+                      <span class="icon icofont-ui-home"></span>
+                      Edit account
+                    </a>
+                  </li>
+                  
+                 
+                  <li>
+                    <a href="#" class="align-items-center" data-bs-toggle="modal" data-bs-target="#settings">
+                      <span class="icon icofont-ui-settings"></span>
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="sign-in.html" class="align-items-center" >
+                      <span class="icon icofont-logout"></span>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+              
+      </div>
+    </div>
+
+    <!-- end Horizontal navbar -->
+
+    <!-- Vertical navbar -->
+    <div id="navbar2" class="app-navbar vertical">
+      <div class="navbar-wrap">
+        
+          <button class="no-style navbar-toggle navbar-close icofont-close-line d-lg-none"></button>
+
+        
+          <div class="app-logo">
+            <div class="logo-wrap">
+              <!-- Image logo -->
+              <img src="assets/img/logo.png" alt="" width="147" height="33" class="logo-img">
+              <!-- end Image logo --> FBY
+            
+            </div>
+          </div>
+
+           <!-- start menu --> 
+              <div class="main-menu">
+            <nav class="main-menu-wrap">
+              <ul class="menu-ul">
+                <li class="menu-item">
+                  <span class="group-title">MENU</span>
+                </li>
+                <li class="menu-item">
+                  <a class="item-link" href="index.html">
+                    <div class="link-icon icon sli-grid"></div>
+                    <span class="link-text">Dashboard</span>
+                  </a>
+                </li>
+                
+                <li class="menu-item active">
+                  <a class="item-link" href="#">
+                    <div class="link-icon icofont-tasks-alt"></div>
+                    <span class="link-text">Jobs</span>
+                  </a>
+                </li>
+                
+                <li class="menu-item">
+                  <a class="item-link" href="FBYmemo.html">
+                    <div class="link-icon icofont-letter"></div>
+                    <span class="link-text">FBY memo</span>
+                  </a>
+                </li>
+
+           
+                <li class="menu-item">
+                  <a class="item-link" href="shift.html">
+                    <div class="link-icon sli-speedometer"></div>
+                    <span class="link-text">Shift</span>
+                  </a>
+                </li>
+               
+              </ul>
+            </nav>
+              </div>
+            <!-- end menu --> 
+     
+      </div>
+    </div>
+
+    <!-- end Vertical navbar -->
+
+    <main class="main-content">
+      <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+
+      <div class="main-content-wrap">
+        <div class="card">
+          <div class="card-body">
+            <ul class="nav nav-pills mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-1" type="button" role="tab" aria-selected="true">Active</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-2" type="button" role="tab" aria-selected="false">Pending</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-3" type="button" role="tab" aria-selected="false">Completed</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+
+              
+              <!--Active project-->
+              <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                <div class="card mb-0">
+                  <div class="card-header">
+                    Active job
+                  </div>
+                  <div class="card-body">
+                    <div class="row" id="activeJob">
+
+                      <div   class="btn btn-load jobLoader" style="background-color:white; border: none;"> 
+                        Light
+                        <span class="btn-loader icofont-spinner"></span>
+                      </div>
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Pending project-->
+              <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                <div class="card mb-0">
+                  <div class="card-header">
+                    Pending job
+                  </div>
+                  <div class="card-body">
+                    <div class="row" id="pendingJob">
+
+                      <div  class="btn btn-load jobLoader" style="background-color:white; border: none;">
+                        Light
+                        <span  class="btn-loader icofont-spinner"></span>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Completed project-->
+              <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                <div class="card mb-0">
+                  <div class="card-header">
+                    Completed  job
+                  </div>
+                  <div class="card-body">
+                    <div class="row" id="completedJob">
+                      
+                      <div  class="btn btn-load completedJobLoader" style="background-color:white; border: none;">
+                        Light
+                        <span class="btn-loader icofont-spinner"></span>
+                      </div>
+
+                    </div>
+                    <nav class="mt-4">
+                      <ul class="pagination">
+                        <li id="Previous" class="page-item page-item1 disabled" onclick="Previous()">
+                          <a class="page-link" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                            <span class="icofont-simple-left"></span>
+                          </a>
+                        </li>
+                        <li class="page-item page-item1 active" aria-current="page" id="page1" onclick="page(1)"><a
+                            class="page-link" href="#">1</a></li>
+                        <li class="page-item page-item1" id="page2"><a class="page-link" href="#"
+                            onclick="page(2)">2</a></li>
+                        <li class="page-item page-item1" id="page3"><a class="page-link" href="#"
+                            onclick="page(3)">3</a></li>
+                        <li id="Next" class="page-item page-item1" onclick="Next()">
+                          <a class="page-link" href="#" aria-label="Next">
+                            <span class="icofont-simple-right"></span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="add-action-box">
+          <button class="btn btn-primary btn-lg btn-square rounded-pill "  data-bs-toggle="modal" data-bs-target="#add-job">
+            <span class="btn-icon icofont-plus"></span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="modalContainer">
+
+
+    </div>
+   
+    <!--start Project detail -->
+    <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="icofont-close-line"></i>
+          </button>
+
+          <div class="modal-header">
+            <h5 class="modal-title">Project detail</h5>
+          </div>
+          <div class="modal-body">
+            <main class="main-content mb-0">
+              <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+        
+              
+              <div class="main-content-wrap">
+                
+                <header class="page-header" style="clear: right;">
+                  <h1 class="page-title"  style="clear: both;">san Building</h1>
+                </header>
+                
+                <div class="page-content">
+        
+        
+                  <!-- START PROJECT LOCATION -->
+                  <figure>
+                    <figcaption class="blockquote-footer">
+                      <div class="card mb-md-0">
+                        <div class="card-body">
+                      
+                          <div class="row align-items-center">
+                            <div class="col col-auto">
+                              <div class="icon icofont-location-pin fs-30 text-muted"></div>
+                            </div>
+                            <div class="col">
+                              <div>Project Address</div>
+                              71 Pilgrim Avenue Chevy Chase, MD 20815
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+        
+                  <hr>
+                  <!-- END PROJECT LOCATION -->
+        
+                  <div class="card mb-0">
+                    <div class="card-header">
+                      Job reward
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th scope="col">Potential Payout</th>
+                            <th scope="col">Per</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                         
+                          <tr>
+                            <td>$200</td>
+                            <td>Hour</td>
+                          </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- START PROJECT SCHEDULE -->
+        
+                  <div class="card">
+                    <div class="card-header">
+                        Project schedule
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                          <thead>
+                          <tr>
+                            <th scope="col" class="text-nowrap">Start Date</th>
+                            <th scope="col" class="text-nowrap">Start Time</th>
+                            <th scope="col" class="text-nowrap">End Date</th>
+                            <th scope="col" class="text-nowrap">End Time</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td>22/07/22</td>
+                            <td>1:00Pm</td>
+                            <td>22/07/22</td>
+                            <td>5:00Pm</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="card-body">
+                      <div class="alert alert-light outline text-dark" role="alert">
+                       Project frequency <strong> Daily</strong>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-dark table-sm">
+                          <thead>
+                          <tr>
+                            <th scope="col">Days</th>
+                            <th scope="col">Start time</th>
+                            <th scope="col">End time</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td>Monday</td>
+                            <td>9:00 am</td>
+                            <td>9:00 pm</td>
+                          </tr>
+                          <tr>
+                            <td>Tuesday</td>
+                            <td>9:00 am</td>
+                            <td>9:00 pm</td>
+                          </tr>
+                          <tr>
+                            <td>Wenesday</td>
+                            <td>9:00 am</td>
+                            <td>9:00 pm</td>
+                          </tr>
+                         
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+        
+                  <!-- END PROJECT SCHEDULE -->
+        
+                  <!-- END PROJECT EVENT -->
+        
+
+        
+                </div>
+      
+              </div>
+            </main>
+        
+          </div>
+          <div class="modal-footer">
+            <div class="actions">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" >Accept </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--end Project detail -->
+
+    <div class="app-footer">
+      <div class="footer-wrap">
+        <div class="row h-100 align-items-center">
+         
+          <div class="col-12 col-md-6 text-end">
+            <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+              <span>Settings</span>
+              <button class="no-style ms-2 settings-btn primary" data-bs-toggle="modal" data-bs-target="#settings">
+                <span class="icon icofont-ui-settings text-primary"></span>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="footer-skeleton">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-6 d-none d-md-block">
+              <ul class="page-breadcrumbs">
+                <li class="item bg-1 animated-bg"></li>
+                <li class="item bg animated-bg"></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="info justify-content-center justify-content-md-end">
+                <div class="version bg animated-bg"></div>
+                <div class="settings animated-bg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-overlay"></div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="add-job"   tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+  
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add Job</h5>
+      </div>
+
+        <div class="modal-body">
+
+          <form id="submitJobs">
+            
+            <div class="card">
+              <div class="card-body">
+                
+                  <div class="form-group">
+                    <label>Customer Name</label>
+                    <select class="selectpicker selectpicker1" data-live-search="true" id="viewCustomer"
+                      onchange="updatesite()" required>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Site Name</label>
+                    <select class="selectpicker selectpicker2"  onchange="collectData()" data-live-search="true" id="viewSites"
+                      required>
+                      <option value="">--Select--</option>
+                    </select>
+                  </div>
+
+      
+                  <div class="row">  
+                    <div class="col-12 col-sm-6">
+                      <div class="form-group">
+                          <label>Start date </label>
+                          <input class="form-control" id="startDate" type="date" required>
+                      </div>
+                    </div>
+                    
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Start time </label>
+                          <input class="form-control" id="startTime"  type="time" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-6">
+                      <div class="form-group">
+                          <label>End date </label>
+                          <input class="form-control"  id="endDate" type="date" required>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>End time</label>
+                          <input class="form-control" id="endTime" type="time" required>
+                        </div>
+                    </div>
+
+
+                  </div>
+                <hr>
+                
+            
+              
+              </div>
+            </div>
+
+
+            <button type="submit" id="submitJob"  style="display: none;"></button>
+
+          </form>
+        
+        </div>
+      
+
+      <div class="modal-footer d-block">
+        <div class="actions justify-content-between">
+          <button type="button" class="btn btn-error" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="clickSubmitButton()">Create </button>
+        </div>
+      </div>  
+
+    
+    </div>
+
+  
+  </div>
+</div>
+
+<!--start Recurring rule  -->
+<div class="modal fade" id="RecurringRule" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body" >
+            <ul class="nav nav-pills mb-2" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab2-1" type="button" role="tab" aria-selected="true">Daily</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab2-2" type="button" role="tab" aria-selected="false">Weekly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab2-3" type="button" role="tab" aria-selected="false">Monthly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab2-4" type="button" role="tab" aria-selected="false">Yearly</button>
+              </li>
+            </ul>
+            
+            <div class="tab-content pb-5 ">
+              
+              <div class="tab-pane fade show active" id="tab2-1" role="tabpanel">
+
+                  <div class="input-group mb-3" style="width: 260px;">
+                    <span class="input-group-text">Repeat every</span>
+                    <input type="tel" class="form-control interval" style="border:1px solid black;"  placeholder="1" > 
+                    <span class="input-group-text">day(s)</span>
+                  </div>
+                  <span class="text-muted"> The event will be repeated every day or every x days, depending on the value.</span>
+                 
+              </div>
+
+              <div class="tab-pane fade" id="tab2-2" role="tabpanel">
+                <div class="input-group mb-3" style="width: 270px;">
+                  <span class="input-group-text">Repeat every</span>
+                  <input type="tel" class="form-control interval" style="border:1px solid black;"  placeholder="1" > 
+                  <span class="input-group-text">week(s)</span>
+                </div>
+
+                <span class="text-muted"> The event will be repeated every  x week, on specific weekdays.</span>
+
+
+                <div class="row mt-4">
+
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="0">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Sun
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="1" >
+                      <label class="form-check-label" for="defaultCheck1">
+                        Mon
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-check">
+                    <input class="form-check-input checkBox" type="checkbox" value="2" >
+                    <label class="form-check-label" for="defaultCheck1">
+                      Tue
+                    </label>
+                  </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="3" >
+                      <label class="form-check-label" for="defaultCheck1">
+                        Wed
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="4">
+                      <label class="form-check-label" for="defaultCheck1">
+                       Thu
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="5" >
+                      <label class="form-check-label" for="defaultCheck1">
+                       Fri
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-check">
+                      <input class="form-check-input checkBox" type="checkbox" value="6" >
+                      <label class="form-check-label" for="defaultCheck1">
+                       Sat
+                      </label>
+                    </div>
+                  </div>
+                
+      
+                 
+                </div>
+
+
+
+              </div>
+
+              <div class="tab-pane fade" id="tab2-3" role="tabpanel">
+                <div class="input-group mb-3" style="width: 320px;">
+                  <span class="input-group-text">Repeat every</span>
+                  <input type="tel" class="form-control interval" style="border:1px solid black;"  placeholder="1" > 
+                  <span class="input-group-text">month(s) on the</span>
+                </div>
+                  
+                <div class="card text-secondary border-secondary">
+                  <div class="card-body">
+                    <div class="form-check">
+                      <input class="form-check-input  mt-3" type="radio" name="monthly"  id="monthly1CheckRadio">
+                      <label class="form-check-label" for="defaultCheck1">
+                        <div class="form-group mb-md-0">
+                          <select class="selectpicker" id="monthly1">
+                            <option value="1">First</option><option value="2">Second</option><option value="3">Third</option><option value="4">Fourth</option><option value="5">Fifth</option><option value="6">Sixth</option><option value="7">Seventh</option><option value="8">Eighth</option><option value="9">Ninth</option><option value="10">Tenth</option><option value="11">Eleventh</option><option value="12">Twelfth</option><option value="13">Thirteenth</option><option value="14">Fourteenth</option><option value="15">Fifteenth</option><option value="16">Sixteenth</option><option value="17">Seventeenth</option><option value="18">Eighteenth</option><option value="19">Nineteenth</option><option value="20">Twentieth</option><option value="21">Twenty-first</option><option value="22">Twenty-second</option><option value="23">Twenty-third</option><option value="24">Twenty-fourth</option><option value="25">Twenty-fifth</option><option value="26">Twenty-sixth</option><option value="27">Twenty-seventh</option><option value="28">Twenty-eighth</option><option value="29">Twenty-ninth</option><option value="30">Thirtieth</option><option value="31">Thirty-first</option><option value="-1">Last</option><option value="-2">Penultimate</option><option value="-3">Third to last</option><option value="-4">Fourth to last</option><option value="-5">Fifth to last</option><option value="-6">Sixth to last</option><option value="-7">Seventh to last</option><option value="-8">Eighth to last</option><option value="-9">Ninth to last</option><option value="-10">Tenth to last</option><option value="-11">Eleventh to last</option><option value="-12">Twelfth to last</option><option value="-13">Thirteenth to last</option><option value="-14">Fourteenth to last</option><option value="-15">Fifteenth to last</option><option value="-16">Sixteenth to last</option><option value="-17">Seventeenth to last</option><option value="-18">Eighteenth to last</option><option value="-19">Nineteenth to last</option><option value="-20">Twentieth to last</option><option value="-21">Twenty-first to last</option><option value="-22">Twenty-second to last</option><option value="-23">Twenty-third to last</option><option value="-24">Twenty-fourth to last</option><option value="-25">Twenty-fifth to last</option><option value="-26">Twenty-sixth to last</option><option value="-27">Twenty-seventh to last</option><option value="-28">Twenty-eighth to last</option><option value="-29">Twenty-ninth to last</option><option value="-30">Thirtieth to last</option>
+                          </select>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <div class="form-check">
+                          <input class="form-check-input  mt-3  " type="radio" name="monthly" id="monthly2CheckRadio"  value="2" >
+                          <label class="form-check-label" for="defaultCheck1">
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="monthly2">
+                                <option value="1" selected="">First</option>
+                                <option value="2">Second</option>
+                                <option value="3">Third</option>
+                                <option value="4">Fourth</option>
+                                <option value="-1">Last</option>
+                              </select>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+          
+                      <div class="col-12 col-md-6">
+                      
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="monthly3">
+                                <option value="1" selected="">Sunday</option>
+                                <option value="2">Monday</option>
+                                <option value="3">Tuesday</option>
+                                <option value="4">Wednesday</option>
+                                <option value="5">Thursday</option>
+                                <option value="6">Friday</option>
+                                <option value="7">Saturday</option>
+                              </select>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              
+              </div>
+
+              <div class="tab-pane fade" id="tab2-4" role="tabpanel">
+                <div class="input-group mb-3" style="width: 310px;">
+                  <span class="input-group-text">Repeat every</span>
+                  <input type="tel" class="form-control interval" style="border:1px solid black;"  placeholder="1" > 
+                  <span class="input-group-text">Year(s) on the</span>
+                </div>
+                  
+                <div class="card text-secondary border-secondary">
+                  <div class="card-body">
+                    <div class="row">
+
+                      <div class="col-12 col-md-5">
+                        <div class="form-check">
+                          <input class="form-check-input mt-3" type="radio"  name="yearly" id="yearly1CheckRadio">
+                          <label class="form-check-label" for="defaultCheck1">
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="yearly1">
+                                <option value="1">First2</option><option value="2">Second</option><option value="3">Third</option><option value="4">Fourth</option><option value="5">Fifth</option><option value="6">Sixth</option><option value="7">Seventh</option><option value="8">Eighth</option><option value="9">Ninth</option><option value="10">Tenth</option><option value="11">Eleventh</option><option value="12">Twelfth</option><option value="13">Thirteenth</option><option value="14">Fourteenth</option><option value="15">Fifteenth</option><option value="16">Sixteenth</option><option value="17">Seventeenth</option><option value="18">Eighteenth</option><option value="19">Nineteenth</option><option value="20">Twentieth</option><option value="21">Twenty-first</option><option value="22">Twenty-second</option><option value="23">Twenty-third</option><option value="24">Twenty-fourth</option><option value="25">Twenty-fifth</option><option value="26">Twenty-sixth</option><option value="27">Twenty-seventh</option><option value="28">Twenty-eighth</option><option value="29">Twenty-ninth</option><option value="30">Thirtieth</option><option value="31">Thirty-first</option><option value="-1">Last</option><option value="-2">Penultimate</option><option value="-3">Third to last</option><option value="-4">Fourth to last</option><option value="-5">Fifth to last</option><option value="-6">Sixth to last</option><option value="-7">Seventh to last</option><option value="-8">Eighth to last</option><option value="-9">Ninth to last</option><option value="-10">Tenth to last</option><option value="-11">Eleventh to last</option><option value="-12">Twelfth to last</option><option value="-13">Thirteenth to last</option><option value="-14">Fourteenth to last</option><option value="-15">Fifteenth to last</option><option value="-16">Sixteenth to last</option><option value="-17">Seventeenth to last</option><option value="-18">Eighteenth to last</option><option value="-19">Nineteenth to last</option><option value="-20">Twentieth to last</option><option value="-21">Twenty-first to last</option><option value="-22">Twenty-second to last</option><option value="-23">Twenty-third to last</option><option value="-24">Twenty-fourth to last</option><option value="-25">Twenty-fifth to last</option><option value="-26">Twenty-sixth to last</option><option value="-27">Twenty-seventh to last</option><option value="-28">Twenty-eighth to last</option><option value="-29">Twenty-ninth to last</option><option value="-30">Thirtieth to last</option>
+                              </select>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-2">
+                        <div class="form-group mb-md-0">
+                          of
+                        </div>
+                      </div>
+                        
+                      <div class="col-12 col-md-5">
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="yearly2">
+                                <option value="1" selected="">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+                              </select>
+                            </div>
+                      </div>
+
+                    </div>
+                
+                    <div class="row">
+                      <div class="col-12 col-md-5">
+                        <div class="form-check">
+                          <input class="form-check-input mt-3" type="radio"  name="yearly" id="yearly2CheckRadio">
+                          <label class="form-check-label" for="defaultCheck1">
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="yearly3">
+                                <option value="1" selected="">First</option>
+                                <option value="2">Second</option>
+                                <option value="3">Third</option>
+                                <option value="4">Fourth</option>
+                                <option value="-1">Last</option>
+                              </select>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+          
+                      <div class="col-12 col-md-5">
+                            <div class="form-group mb-md-0">
+                              <select class="selectpicker" id="yearly4">
+                                <option value="1" selected="">Sunday</option><option value="2">Monday</option><option value="3">Tuesday</option><option value="4">Wednesday</option><option value="5">Thursday</option><option value="6">Friday</option><option value="7">Saturday</option>
+                              </select>
+                            </div>
+                      </div>
+                      
+                      <div class="col-12 col-md-2">
+                        <div class="form-group mb-md-0">
+                         of
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group mb-md-0">
+                          <select class="selectpicker" id="yearly5">
+                            <option value="1" selected="">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveData">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end Recurring rule  -->
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h5 class="page-title"  style="clear: both;">Notification</h5>
+      </div>
+      <div class="modal-body">
+        <main class="main-content mb-0">
+          <div class="app-loader"><i class="icofont-spinner-alt-4 rotate"></i></div>
+    
+          <div class="main-content-wrap">
+            <div class="page-content">
+              <div class="col-12">
+                <div class="card">
+                  
+                  <div class="card-body">
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"> <div class="icon  icofont-hour-glass"></div> </div>
+                      <div class="alert-content">new Pending project requires action</div>
+                      <span class="date">1 minutes ago</span>
+                    </div>
+                    <div class="alert alert-danger with-before-icon" role="alert">
+                      <div class="alert-icon">
+                        <div class="icon sli-target"></div>
+                      </div>
+                      <div class="alert-content">you tried to clocking-in on the wrong location</div>
+                      <span class="date">10 minutes ago</span>
+                    </div>
+                    
+                    <div class="alert alert-secondary with-before-icon" role="alert">
+                      <div class="alert-icon"><div class="icon icofont-letter"></div>
+                    </div>
+                      <div class="alert-content">new memo requires your attention</div>
+                      <span class="date">17 minutes ago</span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+            </div>
+  
+          </div>
+        </main>
+    
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="memoContainer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Memo</h5>
+      </div>
+      <div class="modal-body"  id="memoContent">
+        
+      
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMemo" >Reply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="replyMemo"  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="icofont-close-line"></i>
+      </button>
+
+      <div class="modal-header">
+        <h6 class="modal-title">You are required to reply to the memo</h6>
+      </div>
+      <div class="modal-body" >
+         
+
+        <div class="card-body">
+          <form id="submitReply">
+            <div class="form-group mb-0">
+              <textarea class="form-control" placeholder="Enter responses"  id="response" rows="4" required>ok</textarea>
+            </div>
+            <button type="submit" id="submitJob2"  style="display: none;"></button>
+          </form>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <button type="button" class="btn btn-primary" onclick="clickSubmitButton()"  >Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Add patients modals -->
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Application's settings</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+         
+          <div class="form-group">
+            <label>Light/dark topbar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="topbar">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Light/dark sidebar</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="sidebar">
+            </div>
+          </div>
+
+          <div class="form-group mb-0">
+            <label>Boxed/fullwidth mode</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="boxed" checked>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-block">
+        <div class="actions justify-content-between">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="reset-to-default" type="button" class="btn btn-error">Reset to default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Add patients modals -->
+
+
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.4.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.typeahead.min.js"></script>
+<script src="assets/js/datatables.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/jquery.barrating.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/raphael-min.js"></script>
+<script src="assets/js/morris.min.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<script src="assets/js/echarts-gl.min.js"></script>
+<script src="assets/js/globalVar.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/job.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
