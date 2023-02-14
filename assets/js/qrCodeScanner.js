@@ -22,8 +22,6 @@ var lineWidth = width;
 var speed = 5;
 var direction = 1;
 
-
-
 qrcode2.callback = (res) => {
 
     if (res) {
@@ -88,7 +86,6 @@ function tick() {
 
       canvas.fillStyle = "white";
       canvas.fillRect(x, y, lineWidth, lineHeight);
-      console.log("x:", x, "y:", y, "lineHeight:", lineHeight);
 
       y += speed * direction;
       if (y + lineHeight >= height) {

@@ -289,12 +289,12 @@ function calPayOff(val1, val2){
   $.ajax({
     type: "get", url:`${domain}/api/v1/customer` + `?token=`+`Bearer ${atob(localStorage.getItem("myUser"))}`,
     dataType  : 'json',
-          encode  : true,
+    encode  : true,
     headers: {
         "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
     },
   
-    success: function (data, text) {
+    success: function (data) {
         displayCustomer(data.data)
     },
     error: function (request, status, error) {
@@ -304,11 +304,12 @@ function calPayOff(val1, val2){
     }
   });
   function displayCustomer(val){
+
     let data=`<option value="">--Select--</option>`
   
     for(let i=0; i<val.length; i++){
             data+= `
-            <option value="${val[i].full_name}"> ${val[i].full_name} </option>
+            <option value="${val[i].company_name}"> ${val[i].company_name} </option>
           `
         if(i==val.length-1){
   

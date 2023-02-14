@@ -145,7 +145,6 @@ $(document).ready(function(){
     }
 
 
-    
     getMemo=()=>{
         $.ajax({
           type: "get", url:`${domain}/api/v1/job/allMemoDetailGuard?type=unAnsweredMemo`,
@@ -171,9 +170,43 @@ $(document).ready(function(){
           }
         })
   
-      }
+    }
   
-    getMemo()
+    let pathnames=["/sign-in.html"]
+    if(!pathnames.includes(location.pathname)){
+        getMemo()
+    }
+
+
+/*
+    $.ajax({
+        type: "get", url:`${domain}/api/v1/auth` + `?token=`+`Bearer ${atob(localStorage.getItem("myUser"))}`,
+        dataType  : 'json',
+        encode  : true,
+        headers: {
+            "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+        },
+        success: function (data) {
+        
+
+            console.log(data)
+            getAvailabilityStatus(data.data.user.availability)
+            getNotificationStatus(data.data.user.notification)
+            localStorage.setItem('userDetails', btoa(JSON.stringify(data.data.user)));
+    
+        },
+        error: function (request, status, error) {
+            //localStorage.removeItem("myUser");
+            
+          //  window.location.replace('https://sunny-kataifi-7adb6f.netlify.app/sign-in.html')
+          //  window.location.replace('/sign-in.html')
+        // window.location.href =window.location.toString().split('/')[0] + "/dist/sign-in.html"
+        }
+      });
+
+*/
+
+
 })
 
 
@@ -224,45 +257,49 @@ function clickSubmitButton(){
     document.getElementById("submitJob").click()
   }
   
-  let submitReply=document.getElementById("submitReply")
+let submitReply=document.getElementById("submitReply")||null
 
-submitReply.addEventListener("submit",(e)=>{
-  e.preventDefault()
 
-    let message=$("#response").val()
-  
+if(submitReply){
+    submitReply.addEventListener("submit",(e)=>{
+        e.preventDefault()
       
-    $.ajax({
-      type: "post", url: `${domain}/api/v1/job/reply_memo`,
-      dataType  : 'json',
-        encode  : true,
-      data: {
-        message,
-        memo_receiver_id,
-      },
-      headers: {
-        "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
-      },
-      success: function (data) {
+          let message=$("#response").val()
+        
+          $.ajax({
+            type: "post", url: `${domain}/api/v1/job/reply_memo`,
+            dataType  : 'json',
+              encode  : true,
+            data: {
+              message,
+              memo_receiver_id,
+            },
+            headers: {
+              "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+            },
+            success: function (data) {
+      
+              showMemo=false
+              $('#memoContainer').modal('hide');
+      
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Replied succefully',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        
+            },
+            error: function (request, status, error) {
+      
+              analyzeError(request)
+            }
+          });
+      
+      })
+}
 
-        showMemo=false
-        $('#memoContainer').modal('hide');
 
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Replied succefully',
-          showConfirmButton: false,
-          timer: 1500
-        })
-  
-      },
-      error: function (request, status, error) {
-
-        analyzeError(request)
-      }
-    });
-
-})
 
 

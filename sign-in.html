@@ -143,7 +143,7 @@ $(document).ready(function() {
             email:$("#email").val(),
             password: $("#password").val()
           },
-          success: function (data, text) {
+          success: function (data) {
              $("#signInButton").css("display","block");
              $("#loadingButton").css("display","none");
              if(data.data && data.data.token){

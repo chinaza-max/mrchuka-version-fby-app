@@ -1,30 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
 
        
@@ -39,7 +14,7 @@ $(document).ready(function() {
             job_id:myActiveJob_id,
             guard_id:myGuard_id
           },
-          success: function (data, text) {
+          success: function (data) {
   
             console.log(data)
 
@@ -73,16 +48,19 @@ function displayReport(data){
     for(let i=0;i <data.data.length;i++){
         
 
+      let path =String.raw`${data.data[i].file_url}`
+      let path2 = path.replace(/\\/g, "/");
+
+
         if(data.data[i].report_type=="MESSAGE"){
             data2+=`
             <div class="alert alert-dark outline mb-2" role="alert">
-                A simple dark alert—check it out2!
-                A simple dark alert—check it out2!
+                ${data.data[i].message}
+                <div><strong>Occured at</strong> : ${data.data[i].reference_date	}</div>
 
                 <div class="row text-end">
                 <span>${data.data[i].report_type}</span>
                 <span>${data.data[i].created_at}</span>
-
                 </div>
             </div>
             `
@@ -91,13 +69,13 @@ function displayReport(data){
         else if(data.data[i].mime_type=="image/jpeg"||data.data[i].mime_type=="image/png"){
             data2+=`
             <div class="alert alert-dark outline mb-2" role="alert">
-              A simple dark alert—check it out2!
-              A simple dark alert—check it out2!
+              ${data.data[i].message}
+              <div><strong>Occured at</strong> : ${data.data[i].reference_date	}</div>
 
               <div class="d-flex justify-content-between mt-2">
-                <button type="button" class="btn btn-info mt-1" onclick="viewImage('${data.data[i].file_url}')" >View</button>
+                <button type="button" class="btn btn-info mt-1" onclick="viewImage('${path2}')" >View</button>
                   <div class="row text-end">
-                    <span >file</span>
+                    <span>file</span>
                     <span>${data.data[i].created_at}</span>
                   </div>
               </div> 
@@ -107,11 +85,13 @@ function displayReport(data){
         else if(data.data[i].mime_type=="video/mp4"){
             data2+=`
             <div class="alert alert-dark outline mb-2" role="alert">
-              A simple dark alert—check it out2!
-              A simple dark alert—check it out2!
+              ${data.data[i].message}
+              <div>  
+              
+              <strong>Occured at</strong> : ${data.data[i].reference_date	}</div>
 
               <div class="d-flex justify-content-between mt-2">
-                <button type="button" class="btn btn-info mt-1" onclick="viewVideo('${data.data[i].file_url}')" >View</button>
+                <button type="button" class="btn btn-info mt-1" onclick="viewVideo('${path2}')" >View</button>
                   <div class="row text-end">
                     <span >video</span>
                     <span>${data.data[i].created_at}</span>
@@ -152,8 +132,6 @@ function viewImage(url){
 
     document.getElementById("myViewImage").src=url
     $('#viewImage').modal('show');
-
-
 }
 
 function viewVideo(url){

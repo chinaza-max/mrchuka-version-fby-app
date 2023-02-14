@@ -215,6 +215,7 @@ let getLicense
 let getAvailabilityStatus
 
 
+
 $(document).ready(function(){
 
     //update user profile
@@ -228,7 +229,10 @@ $(document).ready(function(){
             },
             success: function (data) {
             
+
+                console.log(data)
                 getAvailabilityStatus(data.data.user.availability)
+                getNotificationStatus(data.data.user.notification)
                 localStorage.setItem('userDetails', btoa(JSON.stringify(data.data.user)));
         
                 $("#avatar").attr("src",data.data.user.image);
@@ -304,7 +308,6 @@ $(document).ready(function(){
 
     function getAvailabilityStatus(booleanValue){
         
-
         if(booleanValue){
             $('#availableContainer').children().remove();
             $("#availableContainer").append(`
@@ -325,17 +328,15 @@ $(document).ready(function(){
         }
 
 
-
         $('.mycheckButton').on('change', function(){ 
           
-            
             $.ajax({
-              type: "post", url:`${domain}/api/v1/user/toggleVisibilty`,
+              type: "post", url:`${domain}/api/v1/user/toggleVisibilty?type=license`,
               headers: {
                   "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
               },
               data: {
-                },
+              },
               success: function (data) {         
               
                 getProfileData()
@@ -352,13 +353,67 @@ $(document).ready(function(){
 
 
 
+    function getNotificationStatus(booleanValue){
+        
+      if(booleanValue){
+          $('#notificationContainer').children().remove();
+          $("#notificationContainer").append(`
+          <div class="form-check form-switch">
+          <input class="form-check-input mycheckButton2" type="checkbox"  checked>
+          <label class="form-check-label" for="flexSwitchCheckChecked">On</label>
+        </div>
+          `)
+
+
+        Notification.requestPermission().then(function(permission) {
+          if (permission === 'granted') {
+            console.log('Notification permission granted.');
+          } else {
+            console.log('Notification permission denied.');
+          }
+        });
+
+
+      }
+      else{
+          $('#notificationContainer').children().remove();
+          $("#notificationContainer").append(`
+          <div class="form-check form-switch">
+          <input class="form-check-input mycheckButton2" type="checkbox" >
+          <label class="form-check-label" for="flexSwitchCheckChecked">Off </label>
+        </div>
+          `)
+      }
+
+
+      $('.mycheckButton2').on('change', function(){ 
+        
+          $.ajax({
+            type: "post", url:`${domain}/api/v1/user/toggleVisibilty?type=notification`,
+            headers: {
+                "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+            },
+            data: {
+            },
+            success: function (data) {         
+            
+              getProfileData()
+            },
+            error: function (request, status, error) {
+                analyzeError(request)
+            }
+          })
+          
+
+    })
+          
+  }
+
 
 })
 
 function displayLicenseDetails(val){
 
-
-  console.log(val)
     let data=''
 
     if(val.length!=0){
@@ -552,13 +607,8 @@ function displayLicenseDetails(val){
 }   
 
 
-
-
-
 licenceFile.onchange = function() {
 
-    
-    
     if(this.files[0].size > 2097152){
         generalError("File is too big!")
        this.value = "";
@@ -677,10 +727,6 @@ function attarchPDF(URL){
 
 }
 
-
-
-
-
 function deleteLicense(id){
 
 
@@ -720,3 +766,4 @@ function deleteLicense(id){
     }
   })
 }
+

@@ -19,8 +19,6 @@ switchHandle.draggable({
 })
 
 
-
-
 switchHandle2.draggable({
     axis: 'x',
     containment: 'parent',
@@ -169,13 +167,16 @@ function conditionMove2() {
         } else { 
           console.log("Geolocation is not supported by this browser.")
         }
+
+
+
+
         function showPosition(position) {
          
-   
           $.ajax({
             type: "post", url: `${domain}/api/v1/job/check-in`,
             dataType  : 'json',
-           encode  : true,
+            encode  : true,
             headers: {
               "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
             },
@@ -186,7 +187,7 @@ function conditionMove2() {
               job_id:myActiveJob_id
             },
         
-            success: function (data, text) {
+            success: function (data) {
               Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -280,6 +281,8 @@ $(document).ready(function() {
     },
     success: function (data) {
 
+
+      console.log(data)
       $(".jobLoader").css("display", "none");
 
           setGuardId(data.data[0].guard_id)
@@ -1040,12 +1043,10 @@ reportForm.addEventListener("submit",(e)=>{
 
     for (const file of inputFile.files) {
       uploadReport(file,"file",message)
-      console.log("file")
     }
   }
   else{
 
-    console.log("text")
     uploadReport("nofile","message",message)
   }
 
@@ -1063,6 +1064,11 @@ function uploadReport(data,dataType,text){
         $("#signInButton").css("display","none")
         $("#loadingButton").css("display","block")
         const formData=new FormData()
+        
+        let date=$('#dateOfOccurrence').val()
+        let time=$('#timeOfOccurence').val()
+
+        let fullDate=new Date(date+' '+time)
 
           if(dataType=="message"){
             formData.append("job_id",myActiveJob_id);
@@ -1072,6 +1078,7 @@ function uploadReport(data,dataType,text){
             formData.append("is_emergency", false);
             formData.append("is_read",false);
             formData.append("who_has_it","GUARD");
+            formData.append("reference_date",fullDate);
             formData.append("file", "no file");
 
           }
@@ -1083,6 +1090,7 @@ function uploadReport(data,dataType,text){
             formData.append("message", text);
             formData.append("is_emergency", false);
             formData.append("is_read",false);
+            formData.append("reference_date",fullDate);
             formData.append("who_has_it","GUARD");
 
           }
