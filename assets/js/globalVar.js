@@ -8,12 +8,19 @@ let getMemo
 let memo_receiver_id
 
 
+
+
+
+
 if(mode=="development"){
-    domain="http://localhost:3000"
+   domain="http://localhost:3000"
+   // domain='https://middleware.fbyteamschedule.com'
+    //domain='http://fbyteamschedule.com:3000'
+
 }
 else{
-    domain='http://fbyteamschedule.com:3000'
-    //domain='https://middleware.fbyteamschedule.com'
+    //domain='http://fbyteamschedule.com:3000'
+    domain='https://middleware.fbyteamschedule.com'
 }
 
 function setGuardId(val){
@@ -30,7 +37,6 @@ function updateJobStatus(val){
 function analyzeError(request){
     if(request.responseJSON) {
         if(request.responseJSON.status=="conflict-error"){
-            console.log(request.responseJSON.message)
             showModalError(request.responseJSON.message)
             setTimeout(() => {
                 hideModalError()
@@ -44,7 +50,6 @@ function analyzeError(request){
             }, alertLifeSpan);
         }
         else if(request.responseJSON.status=="server-error"){
-            console.log(request.responseJSON.message)
             showModalError(request.responseJSON.message)
             setTimeout(() => {
                 hideModalError()
@@ -217,11 +222,9 @@ if(checkbox){
         checkbox.addEventListener('change', function() {
             if (this.checked) {
             localStorage.setItem("setRTopNavColor",true)
-            console.log("is checked ")
     
     
             } else {
-                console.log("is checked ")
     
             localStorage.setItem("setRTopNavColor",false)
             }
@@ -241,7 +244,6 @@ if(checkbox2){
     
             } else {
     
-           console.log("not checked ")
             localStorage.setItem("setLeftNavColor",false)
     
             }
@@ -262,40 +264,46 @@ let submitReply=document.getElementById("submitReply")||null
 
 if(submitReply){
     submitReply.addEventListener("submit",(e)=>{
-        e.preventDefault()
+      e.preventDefault()
+
+      getLatAndLon(function(latLon) {
       
-          let message=$("#response").val()
-        
-          $.ajax({
-            type: "post", url: `${domain}/api/v1/job/reply_memo`,
-            dataType  : 'json',
-              encode  : true,
-            data: {
-              message,
-              memo_receiver_id,
-            },
-            headers: {
-              "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
-            },
-            success: function (data) {
+        let message=$("#response").val()
       
-              showMemo=false
-              $('#memoContainer').modal('hide');
+        $.ajax({
+          type: "post", url: `${domain}/api/v1/job/reply_memo`,
+          dataType  : 'json',
+          encode  : true,
+          data: {
+            message,
+            memo_receiver_id,
+            latitude: Number(latLon.lat).toFixed(8),
+            longitude: Number(latLon.lon).toFixed(8)
+          },
+          headers: {
+            "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+          },
+          success: function (data) {
+    
+            showMemo=false
+            $('#memoContainer').modal('hide');
+    
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Replied succefully',
+              showConfirmButton: false,
+              timer: 1500
+            })
       
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Replied succefully',
-                showConfirmButton: false,
-                timer: 1500
-              })
-        
-            },
-            error: function (request, status, error) {
+          },
+          error: function (request, status, error) {
+            console.log(request)
+            analyzeError(request)
+          }
+        });
+      })
       
-              analyzeError(request)
-            }
-          });
       
       })
 }
@@ -303,3 +311,48 @@ if(submitReply){
 
 
 
+function getLatAndLon(callback){
+  
+
+    let kalmanLat = new KalmanFilter({R: 0.01, Q: 3});
+    let kalmanLon = new KalmanFilter({R: 0.01, Q: 3});
+  
+    if (navigator.geolocation) {
+           
+      navigator.geolocation.getCurrentPosition(showPosition, () => {
+  
+        Swal.fire({
+          title: 'Action Required',
+          text: "Location permission is required to proceed!",
+          icon: 'warning',
+          confirmButtonColor: '#1c0d2e',
+          confirmButtonText: 'ok'
+        })
+    
+      });
+      
+    } else { 
+      console.log("Geolocation is not supported by this browser.")
+  
+      Swal.fire({
+        title: 'Action Required',
+        text: "Device need Update ",
+        icon: 'warning',
+        confirmButtonColor: '#1c0d2e',
+        confirmButtonText: 'ok'
+      })
+    }
+  
+    function showPosition(position) {
+      
+      let filteredLat = kalmanLat.filter(position.coords.latitude);
+      let filteredLon = kalmanLon.filter(position.coords.longitude);
+    
+
+      let obj={
+        lat:filteredLat,
+        lon:filteredLon
+      }
+      callback(obj)
+    }
+  }

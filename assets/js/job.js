@@ -15,6 +15,13 @@ let showMemo=false
 let limit=15,
 offset=0;
 
+let myCoor
+getLatAndLon(function(latLon) {
+  myCoor= latLon;
+})
+
+
+
 
 $(document).ready(function() {
 
@@ -29,7 +36,7 @@ $(document).ready(function() {
              headers: {
                 "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
             },
-            success: function (data, text) {
+            success: function (data) {
                  $("#pendingJobLoader").css("display", "none");
                  $("#pendingJob").empty();
                    if(data.data && data.data.length > 0 ){
@@ -261,7 +268,7 @@ $(document).ready(function() {
     $.ajax({
       type: "get", url: `${domain}/api/v1/job/myjobs?jobType=ACTIVE` + `&token=`+`Bearer ${atob(localStorage.getItem("myUser"))}`,
       dataType  : 'json',
-          encode  : true,
+      encode  : true,
       headers: {
           "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
       },
@@ -336,11 +343,11 @@ $(document).ready(function() {
       $.ajax({
         type: "get", url: `${domain}/api/v1/job/myjobs?jobType=COMPLETED&limit=${limit}&offset=${offset}` + `&token=`+`Bearer ${atob(localStorage.getItem("myUser"))}`,
         dataType  : 'json',
-          encode  : true,
+        encode  : true,
         headers: {
             "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
         },
-        success: function (data, text) {
+        success: function (data) {
 
           console.log(data)
 
@@ -654,7 +661,7 @@ function displayCustomer(val){
 
   for(let i=0; i<val.length; i++){
           data+= `
-          <option data-tokens=${val[i].id}>${val[i].full_name} (site=${val[i].sites.length} ) </option>
+          <option data-tokens=${val[i].id}>${val[i].company_name} (site=${val[i].sites.length} ) </option>
         `
       if(i==val.length-1){
 
@@ -733,6 +740,10 @@ if(val.length==0){
 
 
 function clickSubmitButton(){
+  document.getElementById("submitJob").click()
+}
+
+function clickSubmitButton2(){
     document.getElementById("submitJob2").click()
 }
 
@@ -761,7 +772,6 @@ submitJobs.addEventListener("submit",(e)=>{
       let fullEnd=moment(new Date(endDate+' '+endTime)).format("YYYY-MM-DD hh:mm:ss a")
 
       if(moment(new Date(endDate+' '+endTime)).isAfter(new Date(startDate+' '+startTime))){
-
 /*
         console.log( fullStart,
             fullEnd,
@@ -773,7 +783,7 @@ submitJobs.addEventListener("submit",(e)=>{
           */
         
         $.ajax({
-          type: "post", url: `${domain}/api/v1/job/add_job_schedule_date_staff`,
+          type: "post", url: `${domain}/api/v1/job/add_job_schedule_date_staff?type=guard`,
           dataType  : 'json',
            encode  : true,
           data: {
@@ -783,12 +793,14 @@ submitJobs.addEventListener("submit",(e)=>{
             customer_id:customer_id,
             site_id: site_id,    
             client_charge:client_charge,
+            latitude: Number(myCoor.lat).toFixed(8),
+            longitude: Number(myCoor.lon).toFixed(8),
             staff_charge:staff_charge
           },
           headers: {
             "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
           },
-          success: function (data,) {
+          success: function (data) {
 
 
             Swal.fire({
@@ -799,22 +811,19 @@ submitJobs.addEventListener("submit",(e)=>{
               timer: 1500
             })
 
-            getActiveJob()
 
+            getActiveJob()
+            $("#add-job").modal('hide');
       
           },
           error: function (request, status, error) {
-
-            console.log(request)
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: request.responseJSON.message,
              
             })
-            switchHandle.animate({
-              left: 0
-            }, 100);
+           
           }
         });
 

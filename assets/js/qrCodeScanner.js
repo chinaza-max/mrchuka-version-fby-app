@@ -16,8 +16,8 @@ let myTimer
 var x = 0;
 var y = 0;
 var width = 800;
-var height = 470;
-var lineHeight = 10;
+var height = 700;
+var lineHeight = 6;
 var lineWidth = width;
 var speed = 5;
 var direction = 1;
@@ -78,10 +78,6 @@ function tick() {
     canvasElement.width = video.videoWidth;
     canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
       
-
-
-
-    
     function animateScan() {
 
       canvas.fillStyle = "white";
@@ -121,6 +117,9 @@ function tick() {
   }
 
   function stopScan(){
+
+    clearTimeout(myTimer)
+
     $("#btn-scan-qr").css("display","flex")
     $("#stopScan").css("display","none")
 
@@ -147,12 +146,12 @@ function tick() {
       data: {
             job_id:myActiveJob_id,
             guard_id:localStorage.myGuard_id,
+            latitude: Number(myCoor.lat).toFixed(8),
+            longitude: Number(myCoor.lon).toFixed(8),
             security_code:res
         },
       success: function (data) {     
 
-
-        console.log(data)
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -160,11 +159,12 @@ function tick() {
           showConfirmButton: false,
           timer: 1500
         })
-
-
+        stopScan()
+        getInstruction()
+       // clearTimeout(myTimer)
       },
       error: function (request, status, error) {
-
+        stopScan()
           let message=request.responseJSON.message
           if(request.responseJSON.status=="security_code_verification_error"){
             Swal.fire({
@@ -186,5 +186,20 @@ function tick() {
 
   function clearQRcodeScan(){
     clearTimeout(myTimer)
+
+    Swal.fire({
+      title: 'Unabled to scan QR code place your  phone well  ',
+      showDenyButton: true,
+      confirmButtonText: 'Try again',
+      denyButtonText: `close`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        btnScanQR.click()
+
+          smoothScroll2(document.getElementById('test'))
+
+      } else if (result.isDenied) {
+      }
+    })
     stopScan()
   }

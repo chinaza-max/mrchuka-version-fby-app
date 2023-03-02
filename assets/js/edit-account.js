@@ -1,6 +1,20 @@
 const password=document.getElementById("password")
 const updateUser=document.getElementById("updateUser")
 
+
+
+
+let getProfileData
+let getLicense
+let getAvailabilityStatus
+let myCoor
+getLatAndLon(function(latLon) {
+  console.log(latLon)
+  myCoor= latLon;
+})
+
+
+
 password.addEventListener("click" ,()=>{
 
     $.ajax({
@@ -210,9 +224,6 @@ function checkImg(e){
 
 
 
-let getProfileData
-let getLicense
-let getAvailabilityStatus
 
 
 
@@ -243,6 +254,10 @@ $(document).ready(function(){
                 $("#address").val(data.data.user.address);
                 $("#dataOfBirth").val(data.data.user.date_of_birth);
                 $("#phoneNumber").val(data.data.user.phone_number);
+                $("#guard_id").val(data.data.user.id);
+
+
+                
         
         
               // console.log(data.data.user.is_archived)
@@ -280,6 +295,7 @@ $(document).ready(function(){
     getProfileData()
 
     getLicense=function(){
+
         $.ajax({
             type: "post", url:`${domain}/api/v1/user/LicenseRUD?type=read` ,
             dataType  : 'json',
@@ -289,6 +305,8 @@ $(document).ready(function(){
             },
             data:{
                 id:localStorage.myGuard_id,
+                latitude: Number(myCoor.lat).toFixed(8),
+                longitude: Number(myCoor.lon).toFixed(8),
             },
             success: function (data) {
             
@@ -297,12 +315,18 @@ $(document).ready(function(){
             },
             error: function (request, status, error) {
 
+              console.log(request)
               analyzeError(request)
 
             }
         });
     }
-    getLicense()
+
+
+    getLatAndLon(function(latLon) {
+      myCoor= latLon;
+      getLicense()
+    })
 
 
 
@@ -630,7 +654,8 @@ $("#formLicence").on("submit", (event) => {
         formData.append("file", file);
     }
     formData.append("expires_in", expiryDate);
-
+    formData.append("latitude", Number(myCoor.lat).toFixed(8));
+    formData.append("longitude", Number(myCoor.lon).toFixed(8));
 
 
     fetch(`${domain}/api/v1/user/uploadLicense`, {
@@ -650,10 +675,12 @@ $("#formLicence").on("submit", (event) => {
             if(data.status==200){
                 getProfileData()
 
-                getLicense()
                 showModalSuccess(data.message)
-                setTimeout(() => {
-                    getLicense()
+                getLatAndLon(function(latLon) {
+                  myCoor= latLon;
+                  getLicense()
+                })
+                setTimeout(() => {                    
                     hideModalSuccess()
                 }, 3000);
             }
@@ -750,16 +777,20 @@ function deleteLicense(id){
         },
         data:{
             id:id,
+            latitude: Number(myCoor.lat).toFixed(8),
+            longitude: Number(myCoor.lon).toFixed(8),
         },
         success: function (data) {
         
-            console.log(data)
             showModalSuccess(data.message)
-            getLicense()
+            getLatAndLon(function(latLon) {
+              myCoor= latLon;
+              getLicense()
+            })
         },
         error: function (request, status, error) {
 
-            analyzeError(request)
+          analyzeError(request)
         
         }
       });

@@ -1544,39 +1544,106 @@
   });
 
   $(window).on('load', function(){
-    //var filename = url.split('/').pop();
-    var filename = location.pathname.substr(location.pathname.lastIndexOf("/")+1);
 
-    if((!localStorage.getItem("myUser")) && (filename != "sign-in.html") && (filename != "forgotPassword.html" && filename != "collectEmail.html")){
-        window.location.href = "sign-in.html"
-    }  else {
-      if(filename != "sign-in.html" && filename != "forgotPassword.html" && filename != "collectEmail.html"){
-            $.ajax({
-                type: "get", url: `${domain}/api/v1/auth` + `?token=Bearer ${atob(localStorage.getItem("myUser"))}`,
-                dataType  : 'json',
-                encode  : true,
-                headers: {
-                    "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
-                },
-                success: function (data, text) {
-                    if(data.data && data.data.user) {
-                        $("#profile").attr("src",data.data.user.image);
-                    }
-                },
-                error: function (request, status, error) { 
-                    //alert("We couldnt retrieve your profile information: "+error+" "+status);
-                    localStorage.removeItem("myUser")
-                    window.location.href = "sign-in.html"
-                    //window.location.href =window.location.toString().split('/')[0] + "/chinaza/html/dist/sign-in.html"
-                }
-          });
+    if(mode=="development"){
+      if((!sessionStorage.getItem("hasVisited"))&&(window.location.pathname!="/sign-in.html")&&(window.location.pathname!="/forgotPassword.html")){
+        window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
+       
       }
+      else{
+        if(window.location.pathname!="/sign-in.html"){
+  
+          $.ajax({
+            type: "get", url:`${domain}/api/v1/auth/`,
+            headers: {
+                "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+            },
+            dataType  : 'json',
+            encode  : true,
+            success: function (data, text) {
+              $("#profile").attr("src",data.data.user.image);
+            },
+            error: function (request, status, error) {
+                localStorage.removeItem("myUser")
+                localStorage.removeItem("userDetails")
+                  window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
+              
+            }
+          });
+  
+          
+        }
+       
+      }
+
     }
+    else if(mode=="production"){
+      if((!sessionStorage.getItem("hasVisited"))&&(window.location.pathname!="/sign-in.html")&&(window.location.pathname!="/forgotPassword.html")){
+        window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
+       
+      }
+      else{
+        if(window.location.pathname!="/sign-in.html"){
+  
+          $.ajax({
+            type: "get", url:`${domain}/api/v1/auth/`,
+            headers: {
+                "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+            },
+            dataType  : 'json',
+            encode  : true,
+            success: function (data, text) {
+              $("#profile").attr("src",data.data.user.image);
+            },
+            error: function (request, status, error) {
+                localStorage.removeItem("myUser")
+                localStorage.removeItem("userDetails")
+                  window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
+              
+            }
+          });
+  
+          
+        }
+       
+      }
+
+    }
+    else{ 
+      if((!sessionStorage.getItem("hasVisited"))&&(window.location.pathname!="/guard/sign-in.html")&&(window.location.pathname!="/guard/forgotPassword.html")){
+        window.location.href =window.location.toString().split('/')[0] + "/guard/sign-in.html"
+       
+      }
+      else{
+        if(window.location.pathname!="/guard/sign-in.html"){
+  
+          $.ajax({
+            type: "get", url:`${domain}/api/v1/auth/`,
+            headers: {
+                "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+            },
+            dataType  : 'json',
+            encode  : true,
+            success: function (data) {
+              $("#profile").attr("src",data.data.user.image);
+            },
+            error: function (request, status, error) {
+                localStorage.removeItem("myUser")
+                localStorage.removeItem("userDetails")
+                  window.location.href =window.location.toString().split('/')[0] + "/guard/sign-in.html"
+       
+            }
+          });
+        }
+       
+      }
+
+    }
+
 
     $.ready.then(function(){
       $('body').addClass('loaded');
-    })
-
+    });
   });
   //Window Resize
   (function() {

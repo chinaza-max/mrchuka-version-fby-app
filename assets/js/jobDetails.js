@@ -8,7 +8,16 @@ let switchArea2 =  $('#switch2');
 let switchArea3 =  $('#switch3');
 let dateIndex=0;
 let mySchedule=[0]
+let activeShiftId
 let myTimeZone=''
+let job_id
+let is_emergency=false
+
+
+let myCoor
+getLatAndLon(function(latLon) {
+  myCoor= latLon;
+})
 
 switchHandle.draggable({
   axis: 'x',
@@ -51,7 +60,11 @@ function conditionMove() {
       left: sizeSwitch + 'px'
     }, 100);
 
+    let kalmanLat = new KalmanFilter({R: 0.01, Q: 3});
+    let kalmanLon = new KalmanFilter({R: 0.01, Q: 3});
+
         if (navigator.geolocation) {
+         
           navigator.geolocation.getCurrentPosition(showPosition, () => {
 
             Swal.fire({
@@ -70,8 +83,21 @@ function conditionMove() {
           
         } else { 
           console.log("Geolocation is not supported by this browser.")
+          
+          Swal.fire({
+            title: 'Action Required',
+            text: "Device need Update ",
+            icon: 'warning',
+            confirmButtonColor: '#1c0d2e',
+            confirmButtonText: 'ok'
+          })
         }
+
+
         function showPosition(position) {
+
+          var filteredLat = kalmanLat.filter(position.coords.latitude);
+          var filteredLon = kalmanLon.filter(position.coords.longitude);
          
           $.ajax({
             type: "post", url: `${domain}/api/v1/job/check-in`,
@@ -79,14 +105,15 @@ function conditionMove() {
              encode  : true,
             data: {
               check_in: true,
-              latitude: Number(position.coords.latitude).toFixed(8) ,
-              longitude: Number(position.coords.longitude).toFixed(8),
-              job_id:myActiveJob_id
+              latitude: Number(filteredLat).toFixed(8),
+              longitude: Number(filteredLon).toFixed(8),
+              job_id:myActiveJob_id,
+              schedule_id:activeShiftId
             },
             headers: {
               "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
             },
-            success: function (data, text) {
+            success: function (data) {
               Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -115,23 +142,7 @@ function conditionMove() {
           });
     
         }
-  
 
-     // if(k==mySchedule.length-1){
-      /*  Swal.fire({
-          title: 'Not yet time',
-          confirmButtonColor: '#1c0d2e',
-          confirmButtonText: 'ok'
-        })
-        */
-/*
-        $(document).ready(function(){
-          $("#warning").modal('show');
-        });
-        switchHandle.animate({
-          left: 0
-        }, 100);
-      }*/
          
   }
 }
@@ -149,6 +160,9 @@ function conditionMove2() {
     switchHandle2.animate({
       left: sizeSwitch + 'px'
     }, 100);
+
+        let kalmanLat = new KalmanFilter({R: 0.01, Q: 3});
+        let kalmanLon = new KalmanFilter({R: 0.01, Q: 3});
       
         if (navigator.geolocation) {
           
@@ -166,6 +180,14 @@ function conditionMove2() {
           })
         } else { 
           console.log("Geolocation is not supported by this browser.")
+          
+          Swal.fire({
+            title: 'Action Required',
+            text: "Device need Update ",
+            icon: 'warning',
+            confirmButtonColor: '#1c0d2e',
+            confirmButtonText: 'ok'
+          })
         }
 
 
@@ -173,6 +195,10 @@ function conditionMove2() {
 
         function showPosition(position) {
          
+          var filteredLat = kalmanLat.filter(position.coords.latitude);
+          var filteredLon = kalmanLon.filter(position.coords.longitude);
+         
+
           $.ajax({
             type: "post", url: `${domain}/api/v1/job/check-in`,
             dataType  : 'json',
@@ -182,9 +208,10 @@ function conditionMove2() {
             },
             data: {
               check_in: false,
-              latitude: position.coords.latitude,
-              longitude:position.coords.longitude,
-              job_id:myActiveJob_id
+              latitude:  Number(filteredLat).toFixed(8) ,
+              longitude: Number(filteredLon).toFixed(8) ,
+              job_id:myActiveJob_id,
+              schedule_id:activeShiftId
             },
         
             success: function (data) {
@@ -232,7 +259,6 @@ function conditionMove3() {
     }
     else {
    
-
       switchHandle3.animate({
         left: 0
       }, 100);
@@ -249,8 +275,6 @@ let getInstruction
 
 
 $(document).ready(function() {
-
-
 
   if(viewedJobStatus=="completed"){
     
@@ -281,27 +305,29 @@ $(document).ready(function() {
     },
     success: function (data) {
 
-
-      console.log(data)
       $(".jobLoader").css("display", "none");
 
           setGuardId(data.data[0].guard_id)
           if(data.data.length==0){
-            window.location.href =window.location.toString().split('/')[0] + "/index.html"
+            //window.location.href =window.location.toString().split('/')[0] + "/index.html"
           }     
           myTimeZone=data.data[0].time_zone
           $.ready.then(function(){
     
-           // $("#myPageTitle2").text(data.data[0].facility_name);
-
+              // $("#myPageTitle2").text(data.data[0].facility_name);
           })
+
+
+          if(data.data[0].is_job_completed){
+            $("#check_in_and_out").css({'z-index':'-1'});
+          }
 
           $("#myPageTitle").text(data.data[0].facility_name);
           $("#address").text(data.data[0].address);
           $("#amountPerHour").text(data.data[0].guard_charge);
           $("#hoursWorked").text(data.data[0].hours_worked);
           $("#earned").text(data.data[0].earn);
-
+          
           $("#date").append(
             ` 
             <tr>
@@ -322,9 +348,11 @@ $(document).ready(function() {
 
 
           mySchedule=data.data[0].schedule
+
           startCountDown()
-   
           $("#jobType").text(data.data[0].job_type);
+          $("#jobId").text(data.data[0].job_id);
+          job_id=data.data[0].job_id
 
 
           for(let j=0; j<data.data[0].schedule.length;j++){
@@ -340,19 +368,49 @@ $(document).ready(function() {
                 `
             )
           }
-          return
-        
-    
-    
+          
+      
+          let k=0
+          do{
+         
+            //activeShiftId=data.data[0].schedule[0].schedule_id
+            if(data.data[0].schedule[k].currently_active||k==0){
+              activeShiftId=data.data[0].schedule[k].schedule_id
+
+              if(data.data[0].schedule[k].check_in_status){
+                  
+                $('#check_in').hide(); 
+                if(data.data[0].schedule[k].check_out_status){
+                  $('#check_out').hide(); 
+
+                }
+                else{
+                  $('#check_out').show(); 
+
+                }
+                //$('#id').show();
+                // $('#id').hide(); $('#id').show();
+              }
+              else{
+                $('#check_in').show(); 
+                $('#check_out').hide(); 
+              }
+            }
+            k++
+          }
+          while(k<data.data[0].schedule.length){
+          
+            
+          }
+          
     },
     error: function (request, status, error) {
         localStorage.removeItem("myUser");
         //window.location.replace('https://sunny-kataifi-7adb6f.netlify.app/sign-in.html')
        // window.location.replace('/sign-in.html')
-        window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
-
+       // window.location.href =window.location.toString().split('/')[0] + "/sign-in.html"
     }
-  });
+  })
   }
 
   getActiveJob()
@@ -372,13 +430,12 @@ $(document).ready(function() {
           type:"TASK"
         },
       success: function (data) {        
-          console.log(data.data)
-
-          disPlayTask(data.data)
+        disPlayTask(data.data)
         
       },
       error: function (request, status, error) {
           $('#loader6').css("display","none");
+          console.log(request)
           analyzeError(request)
       }
     })
@@ -402,8 +459,7 @@ $(document).ready(function() {
           type:"INSTRUCTION"  
         },
       success: function (data) {         
-          console.log(data.data)   
-          disPlayInstruction(data.data)     
+         disPlayInstruction(data.data)     
       },
       error: function (request, status, error) {
           $('#loader6').css("display","none");
@@ -485,17 +541,22 @@ else{
   </div>`)
 }
 
-
+/*
 setTimeout(() => {
   $('.mycheckButton').on('change', function(){ 
       
+
+    console.log()
         $.ajax({
           type: "post", url:`${domain}/api/v1/job/check_task_guard`,
           headers: {
               "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
           },
           data: {
+            agenda_id2:"hhhhhhh",
+
               agenda_id:this.value  
+              
             },
           success: function (data) {         
            
@@ -512,6 +573,8 @@ setTimeout(() => {
 
   })
 }, 1000);
+
+*/
 }
 
 function  disPlayTask(val){
@@ -562,13 +625,16 @@ function  disPlayTask(val){
   setTimeout(() => {
     $('.mycheckButton').on('change', function(){ 
         
+
           $.ajax({
             type: "post", url:`${domain}/api/v1/job/check_task_guard`,
             headers: {
                 "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
             },
             data: {
-                agenda_id:this.value  
+                agenda_id:this.value,
+                latitude: Number(myCoor.lat).toFixed(8),
+                longitude: Number(myCoor.lon).toFixed(8),
               },
             success: function (data) {         
              
@@ -588,11 +654,6 @@ function  disPlayTask(val){
 }
 
 
-
-
-
-
-
   function isSameDate(date1, date2){
 
     if(date1.getDay()==date2.getDay()&&
@@ -610,13 +671,21 @@ function  disPlayTask(val){
 
  function startCountDown(){
 
+
+
+  console.log("jjjjjjjjjjjjjj")
     for(let i=0; i<mySchedule.length; i++){
 
      // mySchedule[i].check_in_date
-      let countDownDate = new Date(mySchedule[i].check_in_date +" "+mySchedule[i].start_time).getTime();
+     const isoDate = moment(mySchedule[i].check_in_date, "MM-DD-YYYY").format("YYYY-MM-DD");
+
+      
+      let countDownDate = new Date(isoDate +" "+mySchedule[i].start_time).getTime();
       let now = new Date(new Date().toLocaleString('en', {timeZone:myTimeZone})).getTime();
       let distance = countDownDate - now;
 
+
+  
       if (distance < 0) {
         continue
       }
@@ -624,12 +693,16 @@ function  disPlayTask(val){
 
         let x = setInterval(function() {
 
-           countDownDate =  new Date(mySchedule[i].check_in_date +" "+mySchedule[i].start_time).getTime();
+          let isoDate2 = moment(mySchedule[i].check_in_date, "MM-DD-YYYY").format("YYYY-MM-DD");
+
+           countDownDate =  new Date(isoDate2 +" "+mySchedule[i].start_time).getTime();
            now = new Date(new Date().toLocaleString('en', {timeZone: myTimeZone})).getTime();
            distance = countDownDate - now;
 
           // Time calculations for days, hours, minutes and seconds
+
           let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
           let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           let seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -689,7 +762,7 @@ function  disPlayTask(val){
 
   smoothScroll(document.getElementById('modal-bodyID'))
   smoothScroll(document.getElementById('chatContainer'))
- });
+ })
 
 
  document.getElementById("sendMessage").addEventListener("click", ()=>{
@@ -1025,8 +1098,6 @@ function postAudio(){
 
 
 
-
-
 let reportForm=document.getElementById("reportForm")
 
 
@@ -1075,11 +1146,14 @@ function uploadReport(data,dataType,text){
             formData.append("guard_id", myGuard_id);
             formData.append("report_type", "MESSAGE");
             formData.append("message", text);
-            formData.append("is_emergency", false);
+            formData.append("is_emergency", is_emergency);
             formData.append("is_read",false);
             formData.append("who_has_it","GUARD");
             formData.append("reference_date",fullDate);
             formData.append("file", "no file");
+            formData.append("latitude",Number(myCoor.lat).toFixed(8));
+            formData.append("longitude",Number(myCoor.lon).toFixed(8));
+         
 
           }
           else{
@@ -1088,11 +1162,12 @@ function uploadReport(data,dataType,text){
             formData.append("guard_id", myGuard_id);
             formData.append("report_type", "ATTACHMENT");
             formData.append("message", text);
-            formData.append("is_emergency", false);
+            formData.append("is_emergency", is_emergency);
             formData.append("is_read",false);
             formData.append("reference_date",fullDate);
             formData.append("who_has_it","GUARD");
-
+            formData.append("latitude",Number(myCoor.lat).toFixed(8));
+            formData.append("longitude",Number(myCoor.lon).toFixed(8));
           }
 
           
@@ -1121,6 +1196,9 @@ function uploadReport(data,dataType,text){
                       inputFile.value = null
                       inputFile.type = "text";
                       inputFile.type = "file";
+
+                      $('#dateOfOccurrence').val('')
+                      $('#timeOfOccurence').val('')
                         
                     }
                     else if(data.status=="conflict-error"){
@@ -1176,8 +1254,6 @@ function uploadReport(data,dataType,text){
 }
 
 
-
-
 let myAddNoteForm=document.getElementById("addNoteForm")
 
 myAddNoteForm.addEventListener("submit",(e)=>{
@@ -1187,53 +1263,98 @@ myAddNoteForm.addEventListener("submit",(e)=>{
 
 function  performSecurityCheck(){
 
-  let note=$("#myNote").val()
 
-  $.ajax({
-    type: "post", url:`${domain}/api/v1/job/perform_security_check`,
-    headers: {
-        "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
-    },
-    dataType  : 'json',
-    encode  : true,
-    data: {
-          job_id:myActiveJob_id,
-          comment:note,
-          guard_id:localStorage.myGuard_id,
-      },
-    success: function (data) {     
+
+  let kalmanLat = new KalmanFilter({R: 0.01, Q: 3});
+  let kalmanLon = new KalmanFilter({R: 0.01, Q: 3});
+
+  if (navigator.geolocation) {
+         
+    navigator.geolocation.getCurrentPosition(showPosition, () => {
 
       Swal.fire({
-        position: 'bottom',
-        icon: 'success',
-        title: 'You are in location',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Action Required',
+        text: "Location permission is required to proceed!",
+        icon: 'warning',
+        confirmButtonColor: '#1c0d2e',
+        confirmButtonText: 'ok'
       })
-      $("#myNote").val()=''
-      $('#add_note').modal('hide');
 
-    },
-    error: function (request, status, error) {
+      switchHandle.animate({
+        left: 0
+      }, 100)
+  
+    });
+    
+  } else { 
+    console.log("Geolocation is not supported by this browser.")
 
-        console.log(request)
+    Swal.fire({
+      title: 'Action Required',
+      text: "Device need Update ",
+      icon: 'warning',
+      confirmButtonColor: '#1c0d2e',
+      confirmButtonText: 'ok'
+    })
+  }
 
-        let message=request.responseJSON.message
-        if(request.responseJSON.status=="location-error"){
-          Swal.fire({
-            icon: 'warning',
-            text: message,
-            showCloseButton: true,
-            confirmButtonAriaLabel: 'ok'
-          })
-        }
-        else{
+  function showPosition(position) {
+    
+    let filteredLat = kalmanLat.filter(position.coords.latitude);
+    let filteredLon = kalmanLon.filter(position.coords.longitude);
+    let note=$("#myNote").val()
 
-          analyzeError(request)
+      
+    $.ajax({
+      type: "post", url:`${domain}/api/v1/job/perform_security_check`,
+      headers: {
+          "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+      },
+      dataType  : 'json',
+      encode  : true,
+      data: {
+            job_id:myActiveJob_id,
+            comment:note,
+            guard_id:localStorage.myGuard_id,
+            latitude: Number(filteredLat).toFixed(8),
+            longitude: Number(filteredLon).toFixed(8),
+        },
+      success: function (data) {     
+  
+        Swal.fire({
+          position: 'bottom',
+          icon: 'success',
+          title: 'You are in location',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        $("#myNote").val()=''
+        $('#add_note').modal('hide');
+  
+      },
+      error: function (request, status, error) {
+  
+          console.log(request)
+  
+          let message=request.responseJSON.message
+          if(request.responseJSON.status=="location-error"){
+            Swal.fire({
+              icon: 'warning',
+              text: message,
+              showCloseButton: true,
+              confirmButtonAriaLabel: 'ok'
+            })
+          }
+          else{
+  
+            analyzeError(request)
+  
+          }
+      }
+    })
+  
+  }
 
-        }
-    }
-  })
 }
 
 
@@ -1245,5 +1366,61 @@ function  performSecurityCheck(){
 //})
 
 
+function is_emergency_update(){
+  is_emergency=false
+}
+
+function sendEmergencyReport(){
+  is_emergency=true
+
+  $.ajax({
+    type: "post", url:`${domain}/api/v1/job/emergence`,
+    headers: {
+        "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
+    },
+    dataType  : 'json',
+    encode  : true,
+    data: {
+        job_id,
+        latitude: Number(myCoor.lat).toFixed(8),
+        longitude: Number(myCoor.lon).toFixed(8),
+    },
+    success: function (data) {     
+
+    },
+    error: function (request, status, error) {
+      analyzeError(request)
+
+    }
+  })
+}
 
 
+/*
+
+window.smoothScroll2 = function(target) {
+  setTimeout(()=>{
+    var scrollContainer = target;
+  do { //find scroll container
+      scrollContainer = scrollContainer.parentNode;
+      if (!scrollContainer) return;
+      scrollContainer.scrollTop += 1;
+  } while (scrollContainer.scrollTop == 0);
+
+  var targetY = 0;
+  do { //find the top of target relatively to the container
+      if (target == scrollContainer) break;
+      targetY += target.offsetTop;
+  } while (target = target.offsetParent);
+
+  scroll = function(c, a, b, i) {
+      i++; if (i > 30) return;
+      c.scrollTop = a + (b - a) / 30 * i;
+      setTimeout(function(){ scroll(c, a, b, i); }, 20);
+  }
+
+  // start scrolling
+  scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+  },200)
+}
+*/

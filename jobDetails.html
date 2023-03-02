@@ -205,7 +205,7 @@
       
       <div class="main-content-wrap">
         <div style="float: right">
-          <button class="btn btn-outline-info btn-square rounded-pill px-3 disabled" id="emergencyButton">
+          <button class="btn btn-outline-info btn-square rounded-pill px-3 disabled" onclick="sendEmergencyReport()" id="emergencyButton" data-bs-toggle="modal" data-bs-target="#modal-2">
             Emergency
           </button>
         </div>
@@ -307,9 +307,7 @@
             </div>
             
             <div class="card-body">
-              <div class="alert alert-light outline text-dark" role="alert">
-                Job type: <strong id="jobType"> Subscription</strong>
-              </div>
+        
               
 
               <div class="card-header">
@@ -376,12 +374,11 @@
 
 
             <!--START SECURITY BUTTON-->
-      
-            <div class="elements-list  mt-3">
-
-
+          <div id="test">
             
-             
+          </div>
+          
+            <div class="elements-list  mt-3">
               
               <a   href="postReport.html" class="btn btn-outline-secondary mt-3" >
                 <div class="icon icofont-clip-board"></div>                
@@ -425,14 +422,14 @@
                 </div>            
               </div>
               
-              <div class="thething">
+              <div class="thething" id="check_in">
                 <div id="switch">
                   <span class="handle">Check in</span>
                   <div class="icon icofont-double-right"></div>
                 </div>            
               </div>
 
-              <div class="thething">
+              <div class="thething" id="check_out">
                 <div id="switch2">
                   <span class="handle">Check out</span>
                   <div class="icon icofont-double-right"></div>
@@ -443,10 +440,16 @@
             <!--START SECURITY BUTTON-->
           </div>
 
+
+          <div class="alert alert-light outline text-dark" role="alert">
+            Job type: <strong id="jobType"> </strong>;
+            Job ID: <strong id="jobId"> Subscription</strong>
+          </div>
+
           <!-- END Job SCHEDULE -->
 
             <div class="add-action-box">
-              <button class="btn btn-primary rounded-0 btn-sm" data-bs-toggle="modal" data-bs-target="#modal-2" >
+              <button class="btn btn-primary rounded-0 btn-sm" onclick="is_emergency_update()" data-bs-toggle="modal" data-bs-target="#modal-2" >
                 <span style="font-size:15px">Report</span>
                 <span class="badge badge-danger badge-sm"></span>
               </button>
@@ -503,70 +506,7 @@
                         <div class="timeline-box">
                           <div class="box-items"  id="instruction" >
         
-                            <div class="item">
-                              <div class="icon-block">
-                                <div class="item-icon icofont-search-document bg-info"></div>
-                              </div>
-        
-                              <div class="content-block">
-                                <div class="item-header">
-                                  <h3 class="h5 item-title">Appointment</h3>
-        
-                                  <div class="item-date"><span>2m ago</span></div>
-                                </div>
-        
-                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate.</div>
-                              </div>
-                            </div>
-        
-                            <div class="item">
-                              <div class="icon-block">
-                                <div class="item-icon icofont-drug bg-danger"></div>
-                              </div>
-        
-                              <div class="content-block">
-                                <div class="item-header">
-                                  <h3 class="h5 item-title">Medication</h3>
-        
-                                  <div class="item-date"><span>2h ago</span></div>
-                                </div>
-        
-                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.</div>
-                              </div>
-                            </div>
-        
-                            <div class="item">
-                              <div class="icon-block">
-                                <div class="item-icon icofont-paralysis-disability bg-warning"></div>
-                              </div>
-        
-                              <div class="content-block">
-                                <div class="item-header">
-                                  <h3 class="h5 item-title">New patient</h3>
-        
-                                  <div class="item-date"><span>Jul 10</span></div>
-                                </div>
-        
-                                <div class="item-desc">Lorem ipsum dolor sit.</div>
-                              </div>
-                            </div>
-        
-                            <div class="item">
-                              <div class="icon-block">
-                                <div class="item-icon icofont-stethoscope-alt"></div>
-                              </div>
-        
-                              <div class="content-block">
-                                <div class="item-header">
-                                  <h3 class="h5 item-title">Examination</h3>
-        
-                                  <div class="item-date"><span>Jul 10</span></div>
-                                </div>
-        
-                                <div class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.</div>
-                              </div>
-                            </div>
-                            
+                  
                           </div>
                         </div>
                       </div>
@@ -1007,7 +947,10 @@
 <div class="modal fade" id="userError" style="z-index:10000;" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body" id="userErrorContent">
+      <div class="modal-body" >
+
+        <div  id="userErrorContent">
+        </div>
       </div>
     </div>
   </div>
@@ -1220,7 +1163,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
 <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 <script src="assets/js/util.js"></script>
-<script src="assets/js/notification.js"></script>
+<script src="assets/js/kalman.min.js"></script>
 <script src="assets/js/jobDetails.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/qrCodeScanner.js"></script>

@@ -344,12 +344,23 @@
                       </select>
                     </div>
                   </div>
+
+
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" name="address" id="address" placeholder="Address" rows="3"></textarea>
+                  </div>
+
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Guard Id</label>
+                      <input class="form-control" id="guard_id"  type="number" readonly>
+                    </div>
+                  </div>
+
                 </div>
 
-                <div class="form-group">
-                  <label>Address</label>
-                  <textarea class="form-control" name="address" id="address" placeholder="Address" rows="3">71 Pilgrim Avenue Chevy Chase, MD 20815</textarea>
-                </div>
+              
 
               
 
@@ -576,7 +587,9 @@ aria-hidden="true">
 <div class="modal fade" id="PasswordResetInfo" style="z-index:10000;" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body" id="PasswordResetInfoContent">
+      <div class="modal-body" >
+        <div  id="PasswordResetInfoContent" >
+        </div>
       </div>
     </div>
   </div>
@@ -694,7 +707,7 @@ aria-hidden="true">
 <script src="assets/js/echarts.min.js"></script>
 <script src="assets/js/echarts-gl.min.js"></script>
 <script src="assets/js/globalVar.js"></script>
-<script src="assets/js/notification.js"></script>
+<script src="assets/js/kalman.min.js"></script>
 <script src="assets/js/edit-account.js"></script>
 <script src="assets/js/main.js"></script>
 

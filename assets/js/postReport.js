@@ -6,7 +6,7 @@ $(document).ready(function() {
         $.ajax({
           type: "post", url: `${domain}/api/v1/job/getSingleReportGuard`,
           dataType  : 'json',
-             encode  : true,
+          encode  : true,
           headers: {
               "Authorization": `Bearer ${atob(localStorage.getItem("myUser"))}`
           },
